@@ -4,11 +4,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
-export default function NavBar() {
+export default function NavBar({ drawerWidth }) {
     return (
       <AppBar
+        position="fixed"
         sx={{
-          position: { xs: "fixed", sm: "relative" },
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar>

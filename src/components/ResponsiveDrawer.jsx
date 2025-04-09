@@ -2,24 +2,8 @@ import { Drawer, Stack, Typography } from "@mui/material";
 import * as React from "react";
 
 
-export default function ResponsiveDrawer() {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [isClosing, setIsClosing] = React.useState(false);
+export default function ResponsiveDrawer({ drawerWidth, mobileOpen, handleDrawerClose, handleDrawerToggle, handleDrawerTransitionEnd }) {
 
-    const handleDrawerClose = () => {
-      setIsClosing(true);
-      setMobileOpen(false);
-    };
-
-    const handleDrawerTransitionEnd = () => {
-      setIsClosing(false);
-    };
-
-    const handleDrawerToggle = () => {
-      if (!isClosing) {
-        setMobileOpen(!mobileOpen);
-      }
-    };
 
     const drawer = (
       <Stack>
