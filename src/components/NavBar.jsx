@@ -28,7 +28,7 @@ export default function NavBar({ drawerWidth, handleDrawerToggle }) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Responsive AppBar
+          Car restoration
         </Typography>{" "}
       </Toolbar>
     </AppBar>
