@@ -5,11 +5,17 @@ import * as React from "react";
 
 const drawerWidth = 240;
 
-
+const projectsList = [
+  { id: 1, name: "List 1" },
+  { id: 2, name: "List 2" },
+  { id: 3, name: "List 3" },
+];
 
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [projectsLists, setProjectsLists] = React.useState(projectsList);
+  const [selectedProjectIndex, setSelectedProjectIndex] = React.useState(0);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -25,6 +31,7 @@ export default function TasksMain() {
       setMobileOpen(!mobileOpen);
     }
   };
+  const selectedProject = projectsLists[selectedProjectIndex];
 
   return (
     <Box sx={{ display: "flex" }}>
