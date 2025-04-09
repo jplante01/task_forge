@@ -25,11 +25,11 @@ export default function TasksMain() {
       setMobileOpen(!mobileOpen);
     }
   };
-  
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <NavBar drawerWidth={drawerWidth} />
+      <NavBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
 
       <ResponsiveDrawer
         drawerWidth={drawerWidth}
