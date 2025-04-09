@@ -2,6 +2,7 @@ import { Box, CssBaseline, Typography } from "@mui/material";
 import ResponsiveDrawer from "../components/ResponsiveDrawer";
 import NavBar from "../components/NavBar";
 import * as React from "react";
+import AddTaskForm from "../components/AddTaskForm";
 
 const drawerWidth = 240;
 
@@ -45,12 +46,13 @@ export default function TasksMain() {
           width: { sm: `calc(100% - ${drawerWidth}px)`, xs: "100%" },
           ml: { sm: `${drawerWidth}px` },
           display: "flex",
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
           mt: 10,
+          pl: 10,
         }}
       >
-        <Typography variant="h6">Tasks</Typography>
+        <AddTaskForm />
       </Box>
       <ResponsiveDrawer
         drawerWidth={drawerWidth}
