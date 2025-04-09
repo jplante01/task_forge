@@ -1,11 +1,21 @@
-import { Drawer, Stack, Typography } from "@mui/material";
+import { Drawer, Stack, Typography, List, ListItem, ListItemText, ListItemButton, ListItemIcon } from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
+import FolderIcon from "@mui/icons-material/Folder";
 
 {/* Project list item component */}
 function ProjectListItem({ project }) {
-  return <Typography>{project.name}</Typography>;
+  return (
+    <ListItem>
+      <ListItemButton>
+        <ListItemIcon>
+          <FolderIcon />
+        </ListItemIcon>
+        <ListItemText primary={project.name} secondary={"project.description"} />
+      </ListItemButton>
+    </ListItem>
+  );
 }
 
 export default function ResponsiveDrawer({
@@ -24,9 +34,11 @@ export default function ResponsiveDrawer({
         alt="TaskForge Logo"
         style={{ width: "100%", padding: "1rem" }}
       />
-      {projectsLists.map((project) => (
-        <ProjectListItem key={project.id} project={project} />
-      ))}
+      <List>
+        {projectsLists.map((project) => (
+          <ProjectListItem key={project.id} project={project} />
+        ))}
+      </List>
     </Stack>
   );
 
