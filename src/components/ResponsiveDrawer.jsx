@@ -7,12 +7,23 @@ import FolderIcon from "@mui/icons-material/Folder";
 {/* Project list item component */}
 function ProjectListItem({ project }) {
   return (
-    <ListItem>
+    <ListItem disableGutters>
       <ListItemButton>
         <ListItemIcon>
           <FolderIcon />
         </ListItemIcon>
-        <ListItemText primary={project.name} secondary={"project.description"} />
+        <ListItemText
+          primary={project.name}
+          slotProps={{
+            primary: {
+              noWrap: true,
+              sx: {
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              },
+            },
+          }}
+        />
       </ListItemButton>
     </ListItem>
   );
