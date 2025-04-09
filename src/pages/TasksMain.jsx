@@ -15,7 +15,7 @@ export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [projectsLists, setProjectsLists] = React.useState(projectsList);
-  const [selectedProjectIndex, setSelectedProjectIndex] = React.useState(0);
+  // const [selectedProjectIndex, setSelectedProjectIndex] = React.useState(0);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -31,7 +31,7 @@ export default function TasksMain() {
       setMobileOpen(!mobileOpen);
     }
   };
-  const selectedProject = projectsLists[selectedProjectIndex];
+  // const selectedProject = projectsLists[selectedProjectIndex];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -47,6 +47,7 @@ export default function TasksMain() {
         handleDrawerClose={handleDrawerClose}
         handleDrawerToggle={handleDrawerToggle}
         handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+        projectsLists={projectsLists}
       />
     </Box>
   );
