@@ -3,6 +3,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
 
+{/* Project list item component */}
 function ProjectListItem({ project }) {
   return <Typography>{project.name}</Typography>;
 }
@@ -14,6 +15,8 @@ export default function ResponsiveDrawer({
   handleDrawerTransitionEnd,
   projectsLists,
 }) {
+
+  {/* Drawer content provided to both mobile drawer and desktop drawer*/}
   const drawer = (
     <Stack>
       <img
