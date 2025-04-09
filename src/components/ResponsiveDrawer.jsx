@@ -1,6 +1,11 @@
 import { Drawer, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
+import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
+
+function ProjectListItem({ project }) {
+  return <Typography>{project.name}</Typography>;
+}
 
 export default function ResponsiveDrawer({
   drawerWidth,
@@ -9,14 +14,19 @@ export default function ResponsiveDrawer({
   handleDrawerTransitionEnd,
   projectsLists,
 }) {
-
   const drawer = (
     <Stack>
-      <Typography>DrawerContent</Typography>
+      <img
+        src={TaskForgeLogo}
+        alt="TaskForge Logo"
+        style={{ width: "100%", padding: "1rem" }}
+      />
+      {projectsLists.map((project) => (
+        <ProjectListItem key={project.id} project={project} />
+      ))}
     </Stack>
   );
 
-  
   return (
     <>
       {/* Mobile Drawer */}
@@ -57,4 +67,10 @@ ResponsiveDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   handleDrawerClose: PropTypes.func.isRequired,
   handleDrawerTransitionEnd: PropTypes.func.isRequired,
+  projectsLists: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
