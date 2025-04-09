@@ -14,7 +14,7 @@ export default function NavBar({ drawerWidth }) {
         }}
       >
         <Toolbar>
-          <Typography variant="h6">Tasks</Typography>
+          <Typography variant="h6">NavbarContent</Typography>
         </Toolbar>
       </AppBar>
     );
