@@ -9,9 +9,11 @@ export default function NavBar({ drawerWidth, handleDrawerToggle }) {
   return (
     <AppBar
       position="fixed"
+      color="transparent"
       sx={{
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },
+        boxShadow: "none",
       }}
     >
       <Toolbar>
