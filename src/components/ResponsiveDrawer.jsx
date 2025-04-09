@@ -7,7 +7,7 @@ export default function ResponsiveDrawer({ drawerWidth, mobileOpen, handleDrawer
 
     const drawer = (
       <Stack>
-        <Typography>TasksLogo</Typography>
+        <Typography>DrawerContent</Typography>
       </Stack>
     );
   return (
