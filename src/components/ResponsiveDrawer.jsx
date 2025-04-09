@@ -7,12 +7,16 @@ export default function ResponsiveDrawer({
   mobileOpen,
   handleDrawerClose,
   handleDrawerTransitionEnd,
+  projectsLists,
 }) {
+
   const drawer = (
     <Stack>
       <Typography>DrawerContent</Typography>
     </Stack>
   );
+
+  
   return (
     <>
       {/* Mobile Drawer */}
