@@ -6,9 +6,9 @@ import * as React from "react";
 const drawerWidth = 240;
 
 const projectsList = [
-  { id: 1, name: "List 1" },
-  { id: 2, name: "List 2" },
-  { id: 3, name: "List 3" },
+  { id: 1, name: "Car restoration", description: "A project to restore a car" },
+  { id: 2, name: "Build a tasklist application", description: "A project to build a tasklist application" },
+  { id: 3, name: "Start a web development business", description: "A project to start a web development business" },
 ];
 
 export default function TasksMain() {
