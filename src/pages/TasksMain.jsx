@@ -1,4 +1,4 @@
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, Typography } from "@mui/material";
 import ResponsiveDrawer from "../components/ResponsiveDrawer";
 import NavBar from "../components/NavBar";
 import * as React from "react";
@@ -40,7 +40,18 @@ export default function TasksMain() {
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
       />
-
+      <Box
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)`, xs: "100%" },
+          ml: { sm: `${drawerWidth}px` },
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mt: 10,
+        }}
+      >
+        <Typography variant="h6">Tasks</Typography>
+      </Box>
       <ResponsiveDrawer
         drawerWidth={drawerWidth}
         mobileOpen={mobileOpen}
