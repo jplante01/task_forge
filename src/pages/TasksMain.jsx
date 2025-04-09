@@ -36,7 +36,10 @@ export default function TasksMain() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <NavBar drawerWidth={drawerWidth} handleDrawerToggle={handleDrawerToggle} />
+      <NavBar
+        drawerWidth={drawerWidth}
+        handleDrawerToggle={handleDrawerToggle}
+      />
 
       <ResponsiveDrawer
         drawerWidth={drawerWidth}
