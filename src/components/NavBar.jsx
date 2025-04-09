@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import PropTypes from "prop-types";
 
 export default function NavBar({ drawerWidth, handleDrawerToggle }) {
   return (
@@ -33,3 +34,8 @@ export default function NavBar({ drawerWidth, handleDrawerToggle }) {
     </AppBar>
   );
 }
+
+NavBar.propTypes = {
+  drawerWidth: PropTypes.number.isRequired,
+  handleDrawerToggle: PropTypes.func.isRequired,
+};

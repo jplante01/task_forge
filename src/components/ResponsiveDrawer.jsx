@@ -1,11 +1,11 @@
 import { Drawer, Stack, Typography } from "@mui/material";
 import * as React from "react";
+import PropTypes from "prop-types";
 
 export default function ResponsiveDrawer({
   drawerWidth,
   mobileOpen,
   handleDrawerClose,
-  handleDrawerToggle,
   handleDrawerTransitionEnd,
 }) {
   const drawer = (
@@ -27,7 +27,7 @@ export default function ResponsiveDrawer({
         }}
         sx={{
           display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: "240px" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
       >
         {drawer}
@@ -47,3 +47,10 @@ export default function ResponsiveDrawer({
     </>
   );
 }
+
+ResponsiveDrawer.propTypes = {
+  drawerWidth: PropTypes.number.isRequired,
+  mobileOpen: PropTypes.bool.isRequired,
+  handleDrawerClose: PropTypes.func.isRequired,
+  handleDrawerTransitionEnd: PropTypes.func.isRequired,
+};
