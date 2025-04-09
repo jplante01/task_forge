@@ -14,7 +14,7 @@ const projectsList = [
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const [projectsLists, setProjectsLists] = React.useState(projectsList);
+  const [projectsLists] = React.useState(projectsList);
   // const [selectedProjectIndex, setSelectedProjectIndex] = React.useState(0);
 
   const handleDrawerClose = () => {
