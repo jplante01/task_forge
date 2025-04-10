@@ -3,7 +3,7 @@ import ResponsiveDrawer from "../components/ResponsiveDrawer";
 import NavBar from "../components/NavBar";
 import * as React from "react";
 import AddTaskForm from "../components/AddTaskForm";
-
+import TaskList from "../components/TaskList";
 const drawerWidth = 240;
 
 const projectsList = [
@@ -46,13 +46,14 @@ export default function TasksMain() {
           width: { sm: `calc(100% - ${drawerWidth}px)`, xs: "100%" },
           ml: { sm: `${drawerWidth}px` },
           display: "flex",
-          // justifyContent: "center",
-          alignItems: "center",
+          flexDirection: "column",
+          // alignItems: "center",
           mt: 10,
-          pl: 10,
+          pl: 3,
         }}
       >
         <AddTaskForm />
+        <TaskList />
       </Box>
       <ResponsiveDrawer
         drawerWidth={drawerWidth}
