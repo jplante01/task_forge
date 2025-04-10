@@ -1,30 +1,42 @@
-import { Drawer, Stack, Typography, List, ListItem, ListItemText, ListItemButton, ListItemIcon } from "@mui/material";
+import {
+  Drawer,
+  Stack,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+  ListItemIcon,
+} from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
 import FolderIcon from "@mui/icons-material/Folder";
 
-{/* Project list item component */}
+{
+  /* Project list item component */
+}
 function ProjectListItem({ project }) {
   return (
-    <ListItem disableGutters>
-      <ListItemButton>
-        <ListItemIcon sx={{ minWidth: 0 }}>
-          <FolderIcon />
-        </ListItemIcon>
-        <ListItemText
-          primary={project.name}
-          slotProps={{
-            primary: {
-              noWrap: true,
-              sx: {
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              },
+    <ListItem>
+      <ListItemIcon sx={{ minWidth: 0 }}>
+        <FolderIcon />
+      </ListItemIcon>
+      <ListItemText
+        primary={project.name}
+        slotProps={{
+          primary: {
+            noWrap: true,
+            sx: {
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             },
-          }}
-        />
-      </ListItemButton>
+          },
+        }}
+        sx={{
+          marginLeft: "0.5rem",
+        }}
+      />
     </ListItem>
   );
 }
@@ -36,8 +48,9 @@ export default function ResponsiveDrawer({
   handleDrawerTransitionEnd,
   projectsLists,
 }) {
-
-  {/* Drawer content provided to both mobile drawer and desktop drawer*/}
+  {
+    /* Drawer content provided to both mobile drawer and desktop drawer*/
+  }
   const drawer = (
     <Stack>
       <img

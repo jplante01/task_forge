@@ -21,7 +21,7 @@ const tasks = [
 
 function TaskItem({ task }) {
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={1}>
       <ListItem disablePadding divider>
         <ListItemIcon sx={{ minWidth: 0 }}>
           <Checkbox disableRipple checked={task.completed} />
@@ -40,8 +40,8 @@ function TaskItem({ task }) {
 
 export default function TaskList() {
   return (
-    <Box sx={{ width: "80%" }}>
-      <List disableGutters>
+    <Box sx={{ width: { xs: "100%", md: "80%" } }}>
+      <List >
         {tasks.map((task) => (
           <TaskItem key={task.id} task={task} />
         ))}
