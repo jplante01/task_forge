@@ -9,7 +9,7 @@ function ProjectListItem({ project }) {
   return (
     <ListItem disableGutters>
       <ListItemButton>
-        <ListItemIcon>
+        <ListItemIcon sx={{ minWidth: 0 }}>
           <FolderIcon />
         </ListItemIcon>
         <ListItemText
@@ -45,7 +45,7 @@ export default function ResponsiveDrawer({
         alt="TaskForge Logo"
         style={{ width: "100%", padding: "1rem" }}
       />
-      <List>
+      <List >
         {projectsLists.map((project) => (
           <ProjectListItem key={project.id} project={project} />
         ))}
