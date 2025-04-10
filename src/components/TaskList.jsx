@@ -7,6 +7,7 @@ import {
   Checkbox,
   IconButton,
   Box,
+  Stack,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import StarIcon from "@mui/icons-material/Star";
@@ -20,18 +21,20 @@ const tasks = [
 
 function TaskItem({ task }) {
   return (
-    <ListItem disablePadding divider>
-      <ListItemIcon sx={{ minWidth: 0 }}>
-        <Checkbox checked={task.completed} />
-      </ListItemIcon>
-      <ListItemText primary={task.name} />
-      <IconButton edge="end" aria-label="delete">
-        <ClearIcon />
+    <Stack direction="row" spacing={2}>
+      <ListItem disablePadding divider>
+        <ListItemIcon sx={{ minWidth: 0 }}>
+          <Checkbox checked={task.completed} />
+        </ListItemIcon>
+        <ListItemText primary={task.name} />
+        <IconButton edge="end" aria-label="star">
+          <StarIcon sx={{ color: task.starred ? "yellow" : "inherit" }} />
+        </IconButton>
+      </ListItem>
+      <IconButton  aria-label="delete" size="small" >
+        <ClearIcon sx={{ color: "grey[100]"}} />
       </IconButton>
-      <IconButton edge="end" aria-label="star">
-        <StarIcon sx={{ color: task.starred ? "yellow" : "inherit" }} />
-      </IconButton>
-    </ListItem>
+    </Stack>
   );
 }
 
