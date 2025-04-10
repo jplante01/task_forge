@@ -28,11 +28,11 @@ function TaskItem({ task }) {
         </ListItemIcon>
         <ListItemText primary={task.name} />
         <IconButton edge="end" aria-label="star">
-          <StarIcon sx={{ color: task.starred ? "yellow" : "inherit" }} />
+          <StarIcon sx={{ color: task.starred ? "yellow" : "grey.400", "&:hover": { color: "grey.500" } }} />
         </IconButton>
       </ListItem>
-      <IconButton  aria-label="delete" size="small" >
-        <ClearIcon sx={{ color: "grey[100]"}} />
+      <IconButton aria-label="delete" size="small">
+        <ClearIcon sx={{ color: "grey.300", "&:hover": { color: "grey.500" } }} />
       </IconButton>
     </Stack>
   );
