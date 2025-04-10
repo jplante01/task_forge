@@ -24,14 +24,14 @@ function TaskItem({ task }) {
     <Stack direction="row" spacing={2}>
       <ListItem disablePadding divider>
         <ListItemIcon sx={{ minWidth: 0 }}>
-          <Checkbox checked={task.completed} />
+          <Checkbox disableRipple checked={task.completed} />
         </ListItemIcon>
         <ListItemText primary={task.name} />
-        <IconButton edge="end" aria-label="star">
-          <StarIcon sx={{ color: task.starred ? "yellow" : "grey.400", "&:hover": { color: "grey.500" } }} />
+        <IconButton disableRipple edge="end" aria-label="star">
+          <StarIcon  sx={{ color: task.starred ? "yellow" : "grey.400", "&:hover": { color: "grey.500" } }} />
         </IconButton>
       </ListItem>
-      <IconButton aria-label="delete" size="small">
+      <IconButton disableRipple aria-label="delete" size="small">
         <ClearIcon sx={{ color: "grey.300", "&:hover": { color: "grey.500" } }} />
       </IconButton>
     </Stack>
