@@ -6,7 +6,7 @@ export default function AddTaskForm() {
       label="Add Task"
       variant="outlined"
       size="small"
-      sx={{ width: "200px" }}
+      fullWidth
     />
   );
 }
