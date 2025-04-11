@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import * as React from "react";
 import AddTaskForm from "../components/AddTaskForm";
 import TaskList from "../components/TaskList";
-const drawerWidth = 240;
+const drawerWidth = 340;
 
 const projectsList = [
   { id: 1, name: "Car restoration", description: "A project to restore a car" },
