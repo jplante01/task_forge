@@ -5,7 +5,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemButton,
   ListItemIcon,
 } from "@mui/material";
 import * as React from "react";
@@ -41,6 +40,13 @@ function ProjectListItem({ project }) {
   );
 }
 
+ProjectListItem.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default function ResponsiveDrawer({
   drawerWidth,
   mobileOpen,
@@ -53,12 +59,23 @@ export default function ResponsiveDrawer({
   }
   const drawer = (
     <Stack>
-      <img
-        src={TaskForgeLogo}
-        alt="TaskForge Logo"
-        style={{ width: "100%", padding: "1rem" }}
-      />
-      <List >
+      <Stack direction="row"  alignItems="center" sx={{ padding: "1rem" }}>
+
+        <img
+          src={TaskForgeLogo}
+          alt="TaskForge Logo"
+          style={{
+            width: "80px",
+            height: "80px",
+            color: "primary",
+            padding: "0.5rem",
+          }}
+        />
+        <Typography variant="logoFont">
+          TASKFORGE
+        </Typography>
+      </Stack>
+      <List>
         {projectsLists.map((project) => (
           <ProjectListItem key={project.id} project={project} />
         ))}
