@@ -8,6 +8,7 @@ const theme = createTheme({
   typography: {
       logoFont: {
       fontFamily: "Permanent Marker",
+      fontSize: "2rem",
     },
   },
   palette: {
