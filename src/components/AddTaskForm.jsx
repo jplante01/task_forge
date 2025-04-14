@@ -1,12 +1,13 @@
-import { TextField } from "@mui/material";
+import { TextField, Box, Button } from "@mui/material";
 import * as React from "react";
+
 export default function AddTaskForm() {
   return (
-    <TextField
-      label="Add Task"
-      variant="outlined"
-      size="small"
-      fullWidth
-    />
+    <Box>
+      <TextField label="" variant="outlined" size="small" fullWidth />
+      <Button type="submit" variant="text" color="primary">
+        + Add Task
+      </Button>
+    </Box>
   );
 }
