@@ -48,10 +48,9 @@ export default function TasksMain() {
           flexDirection: "column",
           // alignItems: "center",
           mt: 10,
-          pl: 3,
         }}
       >
-        <Box sx={{ width: { xs: "100%", md: "80%" } }}>
+        <Box sx={{ width: { xs: "100%", md: "80%" }, p: 3 }}>
           <AddTaskForm />
           <TaskList />
         </Box>
