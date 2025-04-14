@@ -1,39 +1,32 @@
-# Material UI - Vite.js example
+## Fontsource
+Font installation is handled with [Fontsource](https://fontsource.org/)
 
-## How to use
+1) Install the font from fontsource
+2) Import the font into `theme.js`
+3) Apply fonts with `fontfamily="fontName"` attribute, or the sx prop: `sx={{ fontFamily: 'fontName'}}`
+4) OR create a custom variant inside `theme.js`:
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
-
-<!-- #repo-reference -->
-
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-vite
-cd material-ui-vite
+```js
+const theme = createTheme({
+  cssVariables: true,
+  typography: {
+      logoFont: { // Add 'variant=logoFont' to a component
+      fontFamily: "Permanent Marker",
+    },
+  },
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    grey: {
+      ...grey,
+    },
+    error: {
+      main: red.A400,
+    },
+  },
+});
 ```
-
-Install it and run:
-
-```bash
-npm install
-npm run dev
-```
-
-or:
-
-<!-- #repo-reference -->
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-vite)
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-vite)
-
-## The idea behind the example
-
-This example uses [Vite.js](https://github.com/vitejs/vite).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI.
-
-## What's next?
-
-<!-- #host-reference -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
