@@ -11,13 +11,13 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
 import FolderIcon from "@mui/icons-material/Folder";
-
+import AddProjectForm from "./AddProjectForm";
 {
   /* Project list item component */
 }
 function ProjectListItem({ project }) {
   return (
-    <ListItem>
+    <ListItem disableGutters>
       <ListItemIcon sx={{ minWidth: 0 }}>
         <FolderIcon />
       </ListItemIcon>
@@ -58,9 +58,8 @@ export default function ResponsiveDrawer({
     /* Drawer content provided to both mobile drawer and desktop drawer*/
   }
   const drawer = (
-    <Stack>
-      <Stack direction="row"  alignItems="center" sx={{ padding: "1rem" }}>
-
+    <Stack margin="1rem">
+      <Stack direction="row" alignItems="center" sx={{ padding: "1rem" }}>
         <img
           src={TaskForgeLogo}
           alt="TaskForge Logo"
@@ -71,10 +70,9 @@ export default function ResponsiveDrawer({
             padding: "0.5rem",
           }}
         />
-        <Typography variant="logoFont">
-          TASKFORGE
-        </Typography>
+        <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
+      <AddProjectForm />
       <List>
         {projectsLists.map((project) => (
           <ProjectListItem key={project.id} project={project} />
