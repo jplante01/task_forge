@@ -30,3 +30,40 @@ const theme = createTheme({
   },
 });
 ```
+
+# Data Model
+*To view diagram in vscode, open a preview of this markdown file*
+```mermaid
+erDiagram
+    USERS ||--o{ PROJECTS : creates
+    PROJECTS ||--o{ TASKS : contains
+    
+    USERS {
+        uuid id PK
+        string email
+        string password
+        string name
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    PROJECTS {
+        uuid id PK
+        string name
+        string description
+        uuid user_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    TASKS {
+        uuid id PK
+        string title
+        string description
+        boolean completed
+        boolean starred
+        uuid project_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+```
