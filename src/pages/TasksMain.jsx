@@ -2,7 +2,6 @@ import { Box, CssBaseline } from "@mui/material";
 import ResponsiveDrawer from "../components/ResponsiveDrawer";
 import NavBar from "../components/NavBar";
 import * as React from "react";
-import AddTaskForm from "../components/AddTaskForm";
 import TaskList from "../components/TaskList";
 const drawerWidth = 340;
 
@@ -51,7 +50,6 @@ export default function TasksMain() {
         }}
       >
         <Box sx={{ width: { xs: "100%", md: "80%" }, p: 3 }}>
-          <AddTaskForm />
           <TaskList />
         </Box>
       </Box>

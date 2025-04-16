@@ -12,7 +12,7 @@ import {
 import ClearIcon from "@mui/icons-material/Clear";
 import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
-
+import AddTaskForm from "./AddTaskForm";
 const tasks = [
   { id: 1, name: "Rebuild engine", completed: false, starred: true },
   { id: 2, name: "Replace brakes", completed: false, starred: false },
@@ -72,6 +72,7 @@ function CompletedTaskItem({ task }) {
 export default function TaskList() {
   return (
     <Stack direction="column" spacing={0}>
+      <AddTaskForm />
       <Typography pt={4} variant="subtitle1" sx={{ color: "grey.800", fontWeight: "bold" }}>Active Tasks</Typography>
       <List>
         {tasks.map((task) => (
