@@ -5,16 +5,10 @@ import * as React from "react";
 import TaskList from "../components/TaskList";
 const drawerWidth = 340;
 
-const projectsList = [
-  { id: 1, name: "Car restoration", description: "A project to restore a car" },
-  { id: 2, name: "Build a tasklist application", description: "A project to build a tasklist application" },
-  { id: 3, name: "Start a web development business", description: "A project to start a web development business" },
-];
 
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const [projectsLists] = React.useState(projectsList);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -59,7 +53,6 @@ export default function TasksMain() {
         handleDrawerClose={handleDrawerClose}
         handleDrawerToggle={handleDrawerToggle}
         handleDrawerTransitionEnd={handleDrawerTransitionEnd}
-        projectsLists={projectsLists}
       />
     </Box>
   );
