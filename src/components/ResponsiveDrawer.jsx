@@ -1,16 +1,10 @@
-import {
-  Drawer,
-  Stack,
-  Typography,
-  List,
-} from "@mui/material";
+import { Drawer, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
 import AddProjectForm from "./AddProjectForm";
 import ProjectListItem from "./ProjectListItem";
-import { projects as projectsData } from "../data/seedData";
-import { useQuery } from "@tanstack/react-query";
+import ProjectList from "./ProjectList";
 
 
 export default function ResponsiveDrawer({
@@ -21,20 +15,11 @@ export default function ResponsiveDrawer({
 }) {
 
 
-  //fetching projects
-  const { data: projects, isLoading, isError } = useQuery({
-    queryKey: ["projects"],
-    queryFn: () =>
-      new Promise((resolve) =>
-        setTimeout(() => resolve([...projectsData]), 1000),
-  ),
-});
-
-{
-  /* Drawer content provided to both mobile drawer and desktop drawer*/
-}
-const drawer = (
-  <Stack margin="1rem">
+  {
+    /* Drawer content provided to both mobile drawer and desktop drawer*/
+  }
+  const drawer = (
+    <Stack margin="1rem">
       <Stack direction="row" alignItems="center" sx={{ padding: "1rem" }}>
         <img
           src={TaskForgeLogo}
@@ -45,19 +30,14 @@ const drawer = (
             color: "primary",
             padding: "0.5rem",
           }}
-          />
+        />
         <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
       <AddProjectForm />
-      <List>
-        {isLoading ? <Typography>Loading...</Typography>: isError ? <Typography>Error loading projects</Typography> :
-        projects.map((project) => (
-          <ProjectListItem key={project.id} project={project} />
-        ))}
-      </List>
+      <ProjectList />
     </Stack>
   );
-  
+
   return (
     <>
       {/* Mobile Drawer */}
@@ -74,7 +54,7 @@ const drawer = (
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
-        >
+      >
         {drawer}
       </Drawer>
 
