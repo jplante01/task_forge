@@ -24,7 +24,6 @@ export default function TasksMain() {
       setMobileOpen(!mobileOpen);
     }
   };
-  // const selectedProject = projectsLists[selectedProjectIndex];
 
   return (
     <Box sx={{ display: "flex" }}>
