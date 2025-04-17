@@ -13,6 +13,7 @@
     "@fontsource/permanent-marker": "^5.2.5",
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
+    "@supabase/supabase-js": "^2.49.4",
     "@tanstack/react-query": "^5.74.3",
     "@tanstack/react-query-devtools": "^5.74.3",
     "react": "latest",
