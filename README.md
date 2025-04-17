@@ -67,3 +67,13 @@ erDiagram
         timestamp updated_at
     }
 ```
+
+# Running locally
+Run the local development backend with `supabase start`
+Create `./env.local` and paste in the Project URL and anon key provided by `supabase start`
+
+*file format -- .env.local*
+```
+VITE_SUPABASE_URL=http://localhost:54321 # Use correct url if different
+VITE_SUPABASE_ANON_KEY=eyJh...  # Use the actual key shown when Supabase starts
+```
