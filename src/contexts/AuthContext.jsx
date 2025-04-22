@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     const fetchSession = async () => {
       const { data } = await supabase.auth.getSession();
       if (data.session) {
+        setSession(data.session);
         setUser(data.session.user);
       }
       setLoading(false);
@@ -26,8 +28,10 @@ export const AuthProvider = ({ children }) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
+        setSession(session);
         setUser(session.user);
       } else {
+        setSession(null);
         setUser(null);
       }
       setLoading(false);
