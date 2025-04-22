@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { supabase } from "../lib/supabase";
+import supabase from "../lib/supabase";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -61,8 +61,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const register = async (email, password) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    if (error) {
+      throw error;
+    }
+    return data;
+  };
+  
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ session, user, loading, signIn, signOut, register }}>
       {children}
     </AuthContext.Provider>
   );
