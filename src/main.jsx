@@ -9,6 +9,7 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './contexts/AuthContext';
+
 const queryClient = new QueryClient();
 
 root.render(
