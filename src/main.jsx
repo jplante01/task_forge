@@ -8,19 +8,21 @@ import { UIStateProvider } from './contexts/UIStateContext';
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import { AuthProvider } from './contexts/AuthContext';
 const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
-      <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <QueryClientProvider client={queryClient}>
         <UIStateProvider>
           <App />
         </UIStateProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </AuthProvider>
   </React.StrictMode>,
 );
