@@ -25,4 +25,4 @@ async function checkSupabaseConnection() {
   }
 }
 
-checkSupabaseConnection();
+export { checkSupabaseConnection };
