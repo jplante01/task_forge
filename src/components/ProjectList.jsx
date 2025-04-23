@@ -35,3 +35,7 @@ export default function ProjectList() {
     </List>
   );
 }
+
+// This is pulling the projects from the local dev db
+// TODO: Pull the user from the auth context rather than hardcoding it
+// 
