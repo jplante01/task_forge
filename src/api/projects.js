@@ -1,15 +1,14 @@
 import supabase from "../lib/supabase";
-export const projectsApi = {
-  getProjects: async () => {
+const projectsApi = {
+  getProjectsByUserId: async (userId) => {
     const { data, error } = await supabase
       .from("projects")
       .select("*")
-      .order("created_at", { ascending: false });
-
+      .eq("user_id", userId);
     if (error) throw error;
     return data;
   },
-
+  
   getProjectById: async (id) => {
     const { data, error } = await supabase
       .from("projects")
@@ -49,3 +48,5 @@ export const projectsApi = {
     return true;
   },
 };
+
+export default projectsApi;
