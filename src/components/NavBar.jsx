@@ -5,8 +5,22 @@ import * as React from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
-
+import { useQuery } from "@tanstack/react-query";
+import projectsApi from "../api/projects";
+import { UIStateContext } from "../contexts/UIStateContext";
+import { useContext } from "react";
 export default function NavBar({ drawerWidth, handleDrawerToggle }) {
+  const user = { id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" };
+  const { selectedProject } = useContext(UIStateContext);
+  const {
+    data: projects,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["projects", user?.id],
+    queryFn: () => projectsApi.getProjectsByUserId(user?.id),
+  });
+
   return (
     <AppBar
       position="fixed"
@@ -28,7 +42,16 @@ export default function NavBar({ drawerWidth, handleDrawerToggle }) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Car restoration
+          {isLoading ? (
+            <Typography>Loading...</Typography>
+          ) : isError ? (
+            <Typography>Error loading projects</Typography>
+          ) : projects ? (
+            projects.find((project) => project.id === selectedProject)?.name ||
+            "No project selected"
+          ) : (
+            "Loading..."
+          )}
         </Typography>{" "}
       </Toolbar>
     </AppBar>
@@ -39,3 +62,7 @@ NavBar.propTypes = {
   drawerWidth: PropTypes.number.isRequired,
   handleDrawerToggle: PropTypes.func.isRequired,
 };
+
+// This is pulling the projects from the local dev db
+// TODO: Pull the user from the auth context rather than hardcoding it
+// 
