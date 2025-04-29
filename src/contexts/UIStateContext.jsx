@@ -8,7 +8,7 @@ import { tasksApi } from "../api/tasks";
 export const UIStateContext = createContext();
 
 export const UIStateProvider = ({ children }) => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
   const user = { id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" }; // You might want to move this to a proper auth context
   const queryClient = useQueryClient();
 
@@ -22,10 +22,10 @@ export const UIStateProvider = ({ children }) => {
 
   // Set initial selected project
   useEffect(() => {
-    if (projects.length && !selectedProject) {
-      setSelectedProject(projects[0].id);
+    if (projects.length && !selectedProjectId) {
+      setSelectedProjectId(projects[0].id);
     }
-  }, [projects, selectedProject]);
+  }, [projects, selectedProjectId]);
 
   // Project Mutations
   const createProject = useMutation({
@@ -44,50 +44,51 @@ export const UIStateProvider = ({ children }) => {
 
   // Tasks Query (for selected project)
   const tasksQuery = useQuery({
-    queryKey: ["tasks", selectedProject],
+    queryKey: ["tasks", selectedProjectId],
     queryFn: () =>
-      selectedProject ? tasksApi.getTasksByProjectId(selectedProject) : [],
-    enabled: !!selectedProject,
+      selectedProjectId ? tasksApi.getTasksByProjectId(selectedProjectId) : [],
+    enabled: !!selectedProjectId,
   });
+  const tasks = tasksQuery.data || [];
 
   // Task Mutations
   const createTask = useMutation({
     mutationFn: tasksApi.createTask,
     onSuccess: () => {
-      if (selectedProject) {
-        queryClient.invalidateQueries(["tasks", selectedProject]);
+      if (selectedProjectId) {
+        queryClient.invalidateQueries(["tasks", selectedProjectId]);
       }
     },
   });
   const updateTask = useMutation({
     mutationFn: tasksApi.updateTask,
     onSuccess: () => {
-      if (selectedProject) {
-        queryClient.invalidateQueries(["tasks", selectedProject]);
+      if (selectedProjectId) {
+            queryClient.invalidateQueries(["tasks", selectedProjectId]);
       }
     },
   });
   const toggleTaskComplete = useMutation({
     mutationFn: tasksApi.toggleTaskComplete,
     onSuccess: () => {
-      if (selectedProject) {
-        queryClient.invalidateQueries(["tasks", selectedProject]);
+      if (selectedProjectId) {
+        queryClient.invalidateQueries(["tasks", selectedProjectId]);
       }
     },
   });
   const toggleTaskStarred = useMutation({
     mutationFn: tasksApi.toggleTaskStarred,
     onSuccess: () => {
-      if (selectedProject) {
-        queryClient.invalidateQueries(["tasks", selectedProject]);
+      if (selectedProjectId) {
+        queryClient.invalidateQueries(["tasks", selectedProjectId]);
       }
     },
   });
   const deleteTask = useMutation({
     mutationFn: tasksApi.deleteTask,
     onSuccess: () => {
-      if (selectedProject) {
-        queryClient.invalidateQueries(["tasks", selectedProject]);
+      if (selectedProjectId) {
+        queryClient.invalidateQueries(["tasks", selectedProjectId]);
       }
     },
   });
@@ -96,15 +97,15 @@ export const UIStateProvider = ({ children }) => {
     <UIStateContext.Provider
       value={{
         // Project state and methods
-        selectedProject,
-        setSelectedProject,
+        selectedProjectId,
+        setSelectedProjectId,
         projects,
         projectsQuery, // includes loading/error states
         createProject,
         updateProject,
         deleteProject,
         // Task state and methods
-        tasks: tasksQuery.data || [],
+        tasks,
         tasksQuery, // includes loading/error states
         createTask,
         updateTask,
