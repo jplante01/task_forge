@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-function ProjectOptionsMenu({ projectId }) {
+function ProjectOptionsMenu({ project }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -65,7 +65,7 @@ function ProjectOptionsMenu({ projectId }) {
       >
         <MenuItem
           onClick={() =>
-            handleModalOpen(`Details for Option 1 of project ${projectId}`)
+            handleModalOpen(`Are you sure you want to delete project "${project.name}?"`)
           }
         >
           Delete Project
