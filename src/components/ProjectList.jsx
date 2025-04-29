@@ -20,7 +20,7 @@ export default function ProjectList() {
               isSelected={selectedProject === project.id}
               onClick={() => setSelectedProject(project.id)}
             />
-            <ProjectOptionsMenu projectId={project.id} />
+            <ProjectOptionsMenu project={project} />
           </Stack>
         ))
       )}
