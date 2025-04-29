@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { UIStateContext } from "../contexts/UIStateContext";
 import ProjectOptionsMenu from "./ProjectOptionsMenu";
 export default function ProjectList() {
-  const { setSelectedProject, selectedProject, projects, projectsQuery } = useContext(UIStateContext);
+  const { setSelectedProject, selectedProject, projects, projectsQuery, deleteProject } = useContext(UIStateContext);
 
   return (
     <List>
@@ -20,7 +20,7 @@ export default function ProjectList() {
               isSelected={selectedProject === project.id}
               onClick={() => setSelectedProject(project.id)}
             />
-            <ProjectOptionsMenu project={project} />
+            <ProjectOptionsMenu project={project} onDeleteProject={deleteProject.mutate} />
           </Stack>
         ))
       )}
