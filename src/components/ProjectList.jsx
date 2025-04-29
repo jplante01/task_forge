@@ -1,9 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import { List, Typography } from "@mui/material";
 import ProjectListItem from "./ProjectListItem";
 import React, { useContext } from "react";
 import { UIStateContext } from "../contexts/UIStateContext";
-import projectsApi from "../api/projects";
 
 export default function ProjectList() {
   const { setSelectedProject, selectedProject, projects, isLoading, isError } = useContext(UIStateContext);
