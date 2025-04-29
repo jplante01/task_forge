@@ -60,3 +60,19 @@ END $$;
 
 CREATE POLICY "Dev projects open access" 
   ON public.projects FOR ALL USING (true);
+
+  -- Same for tasks table
+ALTER TABLE public.tasks ENABLE ROW LEVEL SECURITY;
+
+DO $$
+BEGIN
+  BEGIN
+    DROP POLICY "Dev projects open access" ON public.tasks;
+  EXCEPTION
+    WHEN undefined_object THEN
+      -- Policy doesn't exist, so nothing to do
+  END;
+END $$;
+
+CREATE POLICY "Dev projects open access" 
+  ON public.tasks FOR ALL USING (true);
