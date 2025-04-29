@@ -29,7 +29,8 @@ export const UIStateProvider = ({ children }) => {
 
   // Project Mutations
   const createProject = useMutation({
-    mutationFn: projectsApi.createProject,
+    mutationFn: (projectData) =>
+      projectsApi.createProject(user.id, projectData),
     onSuccess: () => queryClient.invalidateQueries(["projects", user?.id]),
   });
   const updateProject = useMutation({

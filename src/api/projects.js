@@ -20,10 +20,10 @@ const projectsApi = {
     return data;
   },
 
-  createProject: async (projectData) => {
+  createProject: async (userId, projectData) => {
     const { data, error } = await supabase
       .from("projects")
-      .insert(projectData)
+      .insert({ ...projectData, user_id: userId })
       .select();
 
     if (error) throw error;
