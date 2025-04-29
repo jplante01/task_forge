@@ -10,7 +10,11 @@ export const UIStateProvider = ({ children }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const user = { id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" }; // You might want to move this to a proper auth context
 
-  const { data: projects } = useQuery({
+  const {
+    data: projects = [],
+    isLoading: getProjectsByUserIdLoading,
+    error: getProjectsByUserIdError,
+  } = useQuery({
     queryKey: ["projects", user?.id],
     queryFn: () => projectsApi.getProjectsByUserId(user?.id),
   });
@@ -26,7 +30,9 @@ export const UIStateProvider = ({ children }) => {
       value={{
         selectedProject,
         setSelectedProject,
-        projects, // Making projects available in context
+        projects,
+        getProjectsByUserIdLoading,
+        getProjectsByUserIdError,
       }}
     >
       {children}
