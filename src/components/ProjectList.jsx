@@ -1,8 +1,8 @@
-import { List, Typography } from "@mui/material";
+import { List, Typography, Stack } from "@mui/material";
 import ProjectListItem from "./ProjectListItem";
 import React, { useContext } from "react";
 import { UIStateContext } from "../contexts/UIStateContext";
-
+import ProjectOptionsMenu from "./ProjectOptionsMenu";
 export default function ProjectList() {
   const { setSelectedProject, selectedProject, projects, projectsQuery } = useContext(UIStateContext);
 
@@ -14,12 +14,14 @@ export default function ProjectList() {
         <Typography>Error loading projects</Typography>
       ) : (
         projects.map((project) => (
-          <ProjectListItem
-            key={project.id}
-            project={project}
-            isSelected={selectedProject === project.id}
-            onClick={() => setSelectedProject(project.id)}
-          />
+          <Stack key={project.id} direction="row" justifyContent="space-between">
+            <ProjectListItem
+              project={project}
+              isSelected={selectedProject === project.id}
+              onClick={() => setSelectedProject(project.id)}
+            />
+            <ProjectOptionsMenu projectId={project.id} />
+          </Stack>
         ))
       )}
     </List>
