@@ -6,16 +6,8 @@ import { UIStateContext } from "../contexts/UIStateContext";
 import projectsApi from "../api/projects";
 
 export default function ProjectList() {
-  const user = { id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" };
-  const { setSelectedProject, selectedProject } = useContext(UIStateContext);
-  const {
-    data: projects,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["projects", user?.id],
-    queryFn: () => projectsApi.getProjectsByUserId(user?.id),
-  });
+  const { setSelectedProject, selectedProject, projects, isLoading, isError } = useContext(UIStateContext);
+
   return (
     <List>
       {isLoading ? (
