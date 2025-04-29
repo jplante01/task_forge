@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { UIStateContext } from "../contexts/UIStateContext";
 import { useContext } from "react";
 export default function NavBar({ drawerWidth, handleDrawerToggle }) {
-  const { selectedProject, projects } = useContext(UIStateContext);
+  const { selectedProjectId, projects } = useContext(UIStateContext);
 
   return (
     <AppBar
@@ -34,7 +34,7 @@ export default function NavBar({ drawerWidth, handleDrawerToggle }) {
           {!projects ? (
             <Typography>Loading...</Typography>
           ) : (
-            projects.find((project) => project.id === selectedProject)?.name ||
+            projects.find((project) => project.id === selectedProjectId)?.name ||
             "No project selected"
           )}
         </Typography>{" "}

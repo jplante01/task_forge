@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { UIStateContext } from "../contexts/UIStateContext";
 import ProjectOptionsMenu from "./ProjectOptionsMenu";
 export default function ProjectList() {
-  const { setSelectedProject, selectedProject, projects, projectsQuery, deleteProject } = useContext(UIStateContext);
+  const { setSelectedProjectId, selectedProjectId, projects, projectsQuery, deleteProject } = useContext(UIStateContext);
 
   return (
     <List>
@@ -17,8 +17,8 @@ export default function ProjectList() {
           <Stack key={project.id} direction="row" justifyContent="space-between">
             <ProjectListItem
               project={project}
-              isSelected={selectedProject === project.id}
-              onClick={() => setSelectedProject(project.id)}
+              isSelected={selectedProjectId === project.id}
+              onClick={() => setSelectedProjectId(project.id)}
             />
             <ProjectOptionsMenu project={project} onDeleteProject={deleteProject.mutate} />
           </Stack>
