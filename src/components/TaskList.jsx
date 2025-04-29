@@ -13,16 +13,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
 import AddTaskForm from "./AddTaskForm";
-const tasks = [
-  { id: 1, name: "Rebuild engine", completed: false, starred: true },
-  { id: 2, name: "Replace brakes", completed: false, starred: false },
-];
-
-const completedTasks = [
-  { id: 4, name: "Install new tires", completed: true, starred: false },
-  { id: 3, name: "Paint car", completed: true, starred: false },
-  { id: 5, name: "Replace broken window", completed: true, starred: false }, 
-];
+import { useContext } from "react";
+import { UIStateContext } from "../contexts/UIStateContext";
 
 function ActiveTaskItem({ task }) {
   return (
@@ -31,7 +23,7 @@ function ActiveTaskItem({ task }) {
         <ListItemIcon sx={{ minWidth: 0 }}>
           <Checkbox disableRipple checked={task.completed} />
         </ListItemIcon>
-        <ListItemText primary={task.name} />
+        <ListItemText primary={task.title} />
         <IconButton disableRipple edge="end" aria-label="star">
           <StarIcon  sx={{ color: task.starred ? "yellow" : "grey.400", "&:hover": { color: "grey.500" } }} />
         </IconButton>
@@ -50,7 +42,7 @@ function CompletedTaskItem({ task }) {
         <ListItemIcon sx={{ minWidth: 0 }}>
           <Checkbox disableRipple color="gray.500" checked={task.completed} />
         </ListItemIcon>
-        <ListItemText primary={task.name} sx={{ color: "grey.500" }} />
+        <ListItemText primary={task.title} sx={{ color: "grey.500" }} />
         <IconButton disableRipple edge="end" aria-label="star">
           <StarIcon
             sx={{
@@ -70,15 +62,27 @@ function CompletedTaskItem({ task }) {
 }
 
 export default function TaskList() {
+  const { tasks } = useContext(UIStateContext);
+
+  if (tasks.length === 0) {
+    return <Typography>No project selected</Typography>;
+  }
+  const completedTasks = tasks.filter((task) => task.completed);
+  const activeTasks = tasks.filter((task) => !task.completed);
+  console.log(activeTasks);
   return (
     <Stack direction="column" spacing={0}>
       <AddTaskForm />
       <Typography pt={4} variant="subtitle1" sx={{ color: "grey.800", fontWeight: "bold" }}>Active Tasks</Typography>
+    {activeTasks.length === 0 ? (
+      <Typography>No active tasks</Typography>
+    ) : (
       <List>
-        {tasks.map((task) => (
+        {activeTasks.map((task) => (
           <ActiveTaskItem key={task.id} task={task} />
         ))}
       </List>
+      )}
       <Typography pt={4} variant="subtitle1" sx={{ color: "grey.800", fontWeight: "bold" }}>Completed Tasks</Typography>
       <List>
         {completedTasks.map((task) => (
