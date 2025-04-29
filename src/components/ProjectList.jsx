@@ -4,13 +4,13 @@ import React, { useContext } from "react";
 import { UIStateContext } from "../contexts/UIStateContext";
 
 export default function ProjectList() {
-  const { setSelectedProject, selectedProject, projects, getProjectsByUserIdLoading, getProjectsByUserIdError } = useContext(UIStateContext);
+  const { setSelectedProject, selectedProject, projects, projectsQuery } = useContext(UIStateContext);
 
   return (
     <List>
-      {getProjectsByUserIdLoading ? (
+      {projectsQuery.isLoading ? (
         <Typography>Loading...</Typography>
-      ) : getProjectsByUserIdError ? (
+      ) : projectsQuery.isError ? (
         <Typography>Error loading projects</Typography>
       ) : (
         projects.map((project) => (
