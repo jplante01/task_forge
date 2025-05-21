@@ -9,6 +9,7 @@ const drawerWidth = 340;
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [selectedProjectId, setSelectedProjectId] = React.useState(0);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -31,6 +32,7 @@ export default function TasksMain() {
       <NavBar
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
+        selectedProjectId={selectedProjectId}
       />
       <Box
         sx={{
@@ -43,7 +45,7 @@ export default function TasksMain() {
         }}
       >
         <Box sx={{ width: { xs: "100%", md: "80%" }, p: 3 }}>
-          <TaskList />
+          <TaskList selectedProjectId={selectedProjectId} />
         </Box>
       </Box>
       <ResponsiveDrawer
@@ -52,6 +54,8 @@ export default function TasksMain() {
         handleDrawerClose={handleDrawerClose}
         handleDrawerToggle={handleDrawerToggle}
         handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+        setSelectedProjectId={setSelectedProjectId}
+        selectedProjectId={selectedProjectId}
       />
     </Box>
   );

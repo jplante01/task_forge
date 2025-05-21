@@ -5,10 +5,12 @@ import * as React from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
-import { UIStateContext } from "../contexts/UIStateContext";
-import { useContext } from "react";
-export default function NavBar({ drawerWidth, handleDrawerToggle }) {
-  const { selectedProjectId, projects } = useContext(UIStateContext);
+import { getProjectsByUser } from "../hooks/queries/projects";
+export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProjectId }) {
+  const { data: projects } = getProjectsByUser({
+    id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  });
+  // const { data: project, isLoading, isError } = getProjectById(selectedProjectId, { enabled: !!projects});
 
   return (
     <AppBar
@@ -34,8 +36,9 @@ export default function NavBar({ drawerWidth, handleDrawerToggle }) {
           {!projects ? (
             <Typography>Loading...</Typography>
           ) : (
-            projects.find((project) => project.id === selectedProjectId)?.name ||
-            "No project selected"
+            projects[selectedProjectId]?.name || 'No project selected'
+            // projects.find((project) => project.id === selectedProjectId)?.name ||
+            // "No project selected"
           )}
         </Typography>{" "}
       </Toolbar>

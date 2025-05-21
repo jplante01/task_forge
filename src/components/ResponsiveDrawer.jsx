@@ -2,7 +2,7 @@ import { Drawer, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
-import AddProjectForm from "./AddProjectForm";
+// import AddProjectForm from "./AddProjectForm";
 import ProjectListItem from "./ProjectListItem";
 import ProjectList from "./ProjectList";
 
@@ -12,6 +12,9 @@ export default function ResponsiveDrawer({
   mobileOpen,
   handleDrawerClose,
   handleDrawerTransitionEnd,
+  setSelectedProjectId,
+  selectedProjectId,
+
 }) {
 
 
@@ -33,8 +36,8 @@ export default function ResponsiveDrawer({
         />
         <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
-      <AddProjectForm />
-      <ProjectList />
+      {/* <AddProjectForm /> */}
+      <ProjectList setSelectedProjectId={setSelectedProjectId} selectedProjectId={selectedProjectId}/>
     </Stack>
   );
 
@@ -78,12 +81,14 @@ ResponsiveDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   handleDrawerClose: PropTypes.func.isRequired,
   handleDrawerTransitionEnd: PropTypes.func.isRequired,
+  setSelectedProjectId: PropTypes.func.isRequired,
+  selectedProjectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   projectsLists: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     }),
-  ).isRequired,
+  ),
 };
 
 ProjectListItem.propTypes = {

@@ -1,13 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import supabase from "../lib/supabase";
-import React from "react";
 import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
