@@ -9,6 +9,7 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ root.render(
           <UIStateProvider>
             <App />
           </UIStateProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ThemeProvider>
     </AuthProvider>
