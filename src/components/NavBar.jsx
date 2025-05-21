@@ -49,6 +49,10 @@ export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProjec
 NavBar.propTypes = {
   drawerWidth: PropTypes.number.isRequired,
   handleDrawerToggle: PropTypes.func.isRequired,
+  selectedProjectId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 // This is pulling the projects from the local dev db
