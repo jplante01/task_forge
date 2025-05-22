@@ -14,7 +14,9 @@ export default function ResponsiveDrawer({
   handleDrawerTransitionEnd,
   setSelectedProjectId,
   selectedProjectId,
-
+  projects,
+  projectsQueryIsLoading,
+  projectsQueryIsError,
 }) {
 
 
@@ -37,7 +39,13 @@ export default function ResponsiveDrawer({
         <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
       {/* <AddProjectForm /> */}
-      <ProjectList setSelectedProjectId={setSelectedProjectId} selectedProjectId={selectedProjectId}/>
+      <ProjectList
+        setSelectedProjectId={setSelectedProjectId}
+        selectedProjectId={selectedProjectId}
+        projects={projects}
+        projectsQueryIsLoading={projectsQueryIsLoading}
+        projectsQueryIsError={projectsQueryIsError}
+      />
     </Stack>
   );
 
@@ -83,12 +91,20 @@ ResponsiveDrawer.propTypes = {
   handleDrawerTransitionEnd: PropTypes.func.isRequired,
   setSelectedProjectId: PropTypes.func.isRequired,
   selectedProjectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ),
   projectsLists: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     }),
   ),
+  projectsQueryIsLoading: PropTypes.bool.isRequired,
+  projectsQueryIsError: PropTypes.bool.isRequired,
 };
 
 ProjectListItem.propTypes = {

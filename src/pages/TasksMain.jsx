@@ -15,7 +15,7 @@ export default function TasksMain() {
   const [isClosing, setIsClosing] = React.useState(false);
   const [selectedProjectId, setSelectedProjectId] = React.useState(null);
 
-  const { data: projects } = getProjectsByUser({
+  const { data: projects, isLoading: projectsQueryIsLoading, isError: projectsQueryIsError } = getProjectsByUser({
     id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
   });
 
@@ -75,6 +75,9 @@ export default function TasksMain() {
         handleDrawerTransitionEnd={handleDrawerTransitionEnd}
         setSelectedProjectId={setSelectedProjectId}
         selectedProjectId={selectedProjectId}
+        projects={projects}
+        projectsQueryIsLoading={projectsQueryIsLoading}
+        projectsQueryIsError={projectsQueryIsError}
       />
     </Box>
   );
