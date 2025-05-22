@@ -1,5 +1,5 @@
 import projectsApi from "../../api/projects";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const getProjectsByUser = (user) => {
   return useQuery({
@@ -16,4 +16,29 @@ export const getProjectById = (projectId) => {
     enabled: !!projectId,
     staleTime: 1000 * 5,
   });
+}
+
+export const deleteProjectById = (projectId) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => projectsApi.deleteProjectById(projectId),
+    onMutate: async(projectId) => {
+      await queryClient.cancelQueries(["projects"]);
+      const previousProjects = queryClient.getQueryData(["projects"]);
+      queryClient.setQueryData(["projects"], (old) => {
+        return old.filter((project) => project.id !== projectId);
+      });
+      return { previousProjects };
+    },
+    onError: () => {
+      queryClient.setQueryData(["projects"], (old) => {
+        return old;
+      });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["projects"]);
+    },
+
+  })
 }
