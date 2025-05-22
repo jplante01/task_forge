@@ -5,6 +5,8 @@ import { getProjectsByUser } from "../hooks/queries/projects";
 import * as React from "react";
 import PropTypes from "prop-types";
 
+//TODO: should i prefetch the projects when mousing over the project list?
+// TODO: render skeletons on loading
 export default function ProjectList({selectedProjectId, setSelectedProjectId}) {
 
   const {
@@ -21,7 +23,7 @@ export default function ProjectList({selectedProjectId, setSelectedProjectId}) {
 
   if (isError){
     return (
-    <Typography>Error loading projects</Typography>
+    <Typography>Error loading projects</Typography> 
     )
   }
   {
