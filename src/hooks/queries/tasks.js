@@ -1,9 +1,10 @@
-import tasksApi from "../../api/projects";
+import tasksApi from "../../api/tasks";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetTasksByProjectId = (projectId) => {
+export const useGetTasksByProjectId = (projectId, options = {}) => {
   return useQuery({
-    queryKey: ["projects", projectId],
+    queryKey: ["tasks", projectId],
     queryFn: () => tasksApi.getTasksByProjectId(projectId),
+    ...options,
   });
 };

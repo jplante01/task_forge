@@ -5,11 +5,9 @@ import * as React from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
-import { getProjectsByUser } from "../hooks/queries/projects";
-export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProjectId }) {
-  const { data: projects } = getProjectsByUser({
-    id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-  });
+// import { getProjectsByUser } from "../hooks/queries/projects";
+export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProject }) {
+
   // const { data: project, isLoading, isError } = getProjectById(selectedProjectId, { enabled: !!projects});
 
   return (
@@ -33,10 +31,10 @@ export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProjec
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          {!projects ? (
+          {!selectedProject ? (
             <Typography>Loading...</Typography>
           ) : (
-            projects[selectedProjectId]?.name || 'No project selected'
+            selectedProject.name || 'No project selected'
             // projects.find((project) => project.id === selectedProjectId)?.name ||
             // "No project selected"
           )}
@@ -49,10 +47,15 @@ export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProjec
 NavBar.propTypes = {
   drawerWidth: PropTypes.number.isRequired,
   handleDrawerToggle: PropTypes.func.isRequired,
+  selectedProject: PropTypes.shape({
+    name: PropTypes.string,
+    // add other properties of selectedProject if needed
+  }),
   selectedProjectId: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
+  projects: PropTypes.object, // or PropTypes.array if projects is an array
 };
 
 // This is pulling the projects from the local dev db
