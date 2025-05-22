@@ -61,3 +61,5 @@ export const tasksApi = {
     return true;
   },
 };
+
+export default tasksApi;
