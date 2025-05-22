@@ -1,27 +1,40 @@
-import { List, Typography, Stack } from "@mui/material";
+import { List, Typography, Stack, Skeleton } from "@mui/material";
 import ProjectListItem from "./ProjectListItem";
 import ProjectOptionsMenu from "./ProjectOptionsMenu";
-import { getProjectsByUser } from "../hooks/queries/projects";
 import * as React from "react";
 import PropTypes from "prop-types";
 
 //TODO: should i prefetch the projects when mousing over the project list?
-// TODO: render skeletons on loading
-export default function ProjectList({selectedProjectId, setSelectedProjectId}) {
+export default function ProjectList({selectedProjectId, setSelectedProjectId, projects, projectsQueryIsLoading, projectsQueryIsError}) {
 
-  const {
-    data: projects,
-    isLoading,
-    isError,
-  } = getProjectsByUser({ id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" });
 
-  if (isLoading) {
+
+  if (projectsQueryIsLoading) {
     return (
-      <Typography>Loading projects...</Typography>
+      <>
+        <Skeleton
+          variant="rectangular"
+          width="100%"
+          height={50}
+          sx={{ margin: "0.5rem 0" }}
+        />
+        <Skeleton
+          variant="rectangular"
+          width="100%"
+          height={50}
+          sx={{ margin: "0.5rem 0" }}
+        />
+        <Skeleton
+          variant="rectangular"
+          width="100%"
+          height={50}
+          sx={{ margin: "0.5rem 0" }}
+        />
+      </>
     );
   }
 
-  if (isError){
+  if (projectsQueryIsError) {
     return (
     <Typography>Error loading projects</Typography> 
     )
@@ -55,6 +68,9 @@ export default function ProjectList({selectedProjectId, setSelectedProjectId}) {
 ProjectList.propTypes = {
   selectedProjectId: PropTypes.string,
   setSelectedProjectId: PropTypes.func.isRequired,
+  projects: PropTypes.array,
+  projectsQueryIsLoading: PropTypes.bool.isRequired,
+  projectsQueryIsError: PropTypes.bool,
 };
 
 // This is pulling the projects from the local dev db
