@@ -4,12 +4,29 @@ import NavBar from "../components/NavBar";
 import * as React from "react";
 import TaskList from "../components/TaskList";
 const drawerWidth = 340;
+import { getProjectsByUser } from "../hooks/queries/projects";
+import { useEffect } from "react";
 
 
+//TODO: eliminate layout shift on first render of TasksMain
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const [selectedProjectId, setSelectedProjectId] = React.useState(0);
+  const [selectedProjectId, setSelectedProjectId] = React.useState(null);
+
+  const { data: projects } = getProjectsByUser({
+    id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  });
+
+  useEffect(() => {
+    if (projects?.length > 0 && selectedProjectId === null) {
+      setSelectedProjectId(projects[0].id);
+    }
+  }, [projects]);
+
+  // const handleProjectSelect = (projectId) => {
+  //   setSelectedProjectId(projectId);
+  // };
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -33,6 +50,7 @@ export default function TasksMain() {
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
         selectedProjectId={selectedProjectId}
+        selectedProject={projects?.find((project) => project.id === selectedProjectId)}
       />
       <Box
         sx={{
@@ -45,7 +63,7 @@ export default function TasksMain() {
         }}
       >
         <Box sx={{ width: { xs: "100%", md: "80%" }, p: 3 }}>
-          <TaskList selectedProjectId={selectedProjectId} />
+          <TaskList projectId={selectedProjectId} />
         </Box>
       </Box>
       <ResponsiveDrawer

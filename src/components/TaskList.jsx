@@ -95,16 +95,21 @@ function CompletedTaskItem({
   );
 }
 
-export default function TaskList({selectedProjectId}) {
+export default function TaskList({ projectId }) {
   // const { tasks, toggleTaskComplete, toggleTaskStarred, deleteTask } =
   //   useContext(UIStateContext);
   // TODO: Need selectedProject, useEffect?
-  const { data: tasks, isPending, isError } = useGetTasksByProjectId(selectedProjectId);
+  //TODO:
+  const { data: tasks, isPending, isError, error } = useGetTasksByProjectId(projectId, {enabled: !!projectId});
 
-  {isPending &&  <Typography>Loading...</Typography>}
+  if (isPending) {
+    return <Typography>Loading...</Typography>;
+  }
 
-  {isError &&  <Typography>Error loading tasks</Typography>}
-  
+  if (isError) {
+    return <Typography>Error loading Tasks: {error.message}</Typography>;
+  }
+
   if (tasks) {
     const completedTasks = tasks.filter((task) => task.completed);
     const activeTasks = tasks.filter((task) => !task.completed);
@@ -154,7 +159,16 @@ export default function TaskList({selectedProjectId}) {
       </Stack>
     );
   }
-  
+
+  return (
+    <Typography
+      pt={4}
+      variant="subtitle1"
+      sx={{ color: "grey.800", fontWeight: "bold" }}
+    >
+      No tasks found
+    </Typography>
+  );
 }
 
 ActiveTaskItem.propTypes = {
@@ -169,8 +183,6 @@ CompletedTaskItem.propTypes = {
 };
 
 TaskList.propTypes = {
-  selectedProjectId: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  projectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };
