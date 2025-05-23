@@ -6,7 +6,6 @@ import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
 import ProjectListItem from "./ProjectListItem";
 import ProjectList from "./ProjectList";
 
-
 export default function ResponsiveDrawer({
   drawerWidth,
   mobileOpen,
@@ -17,9 +16,8 @@ export default function ResponsiveDrawer({
   projects,
   projectsQueryIsLoading,
   projectsQueryIsError,
+  user,
 }) {
-
-
   {
     /* Drawer content provided to both mobile drawer and desktop drawer*/
   }
@@ -45,6 +43,7 @@ export default function ResponsiveDrawer({
         projects={projects}
         projectsQueryIsLoading={projectsQueryIsLoading}
         projectsQueryIsError={projectsQueryIsError}
+        user={user}
       />
     </Stack>
   );

@@ -7,17 +7,22 @@ const drawerWidth = 340;
 import { getProjectsByUser } from "../hooks/queries/projects";
 import { useEffect } from "react";
 
-
 //TODO: eliminate layout shift on first render of TasksMain
 // TODO: pass loading to the projectslist
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [selectedProjectId, setSelectedProjectId] = React.useState(null);
-
-  const { data: projects, isLoading: projectsQueryIsLoading, isError: projectsQueryIsError } = getProjectsByUser({
+  const [user, setUser] = React.useState({
     id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
   });
+  const {
+    data: projects,
+    isLoading: projectsQueryIsLoading,
+    isError: projectsQueryIsError,
+  } = getProjectsByUser(
+    user,
+  );
 
   useEffect(() => {
     if (projects?.length > 0 && selectedProjectId === null) {
@@ -51,7 +56,9 @@ export default function TasksMain() {
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
         selectedProjectId={selectedProjectId}
-        selectedProject={projects?.find((project) => project.id === selectedProjectId)}
+        selectedProject={projects?.find(
+          (project) => project.id === selectedProjectId,
+        )}
       />
       <Box
         sx={{
@@ -78,6 +85,7 @@ export default function TasksMain() {
         projects={projects}
         projectsQueryIsLoading={projectsQueryIsLoading}
         projectsQueryIsError={projectsQueryIsError}
+        user={user}
       />
     </Box>
   );

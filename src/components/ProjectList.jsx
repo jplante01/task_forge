@@ -5,9 +5,9 @@ import * as React from "react";
 import PropTypes from "prop-types";
 
 //TODO: should i prefetch the projects when mousing over the project list?
-export default function ProjectList({selectedProjectId, setSelectedProjectId, projects, projectsQueryIsLoading, projectsQueryIsError}) {
-
-
+// TODO: add a mutation to delete a project
+export default function ProjectList({selectedProjectId, setSelectedProjectId, projects, projectsQueryIsLoading, projectsQueryIsError, user}) {
+  
 
   if (projectsQueryIsLoading) {
     return (
@@ -57,7 +57,7 @@ export default function ProjectList({selectedProjectId, setSelectedProjectId, pr
           />
           <ProjectOptionsMenu
             project={project}
-            // onDeleteProject={deleteProject.mutate}
+            user={user}
           />
         </Stack>
       ))}

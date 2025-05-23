@@ -8,12 +8,15 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { useDeleteProjectById } from "../hooks/queries/projects";
 
-function ProjectOptionsMenu({ project, onDeleteProject }) {
+function ProjectOptionsMenu({ project, onDeleteProject, user }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const open = Boolean(anchorEl);
+
+  const { mutate: deleteProjectById } = useDeleteProjectById();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,11 +36,11 @@ function ProjectOptionsMenu({ project, onDeleteProject }) {
     setModalOpen(false);
   };
 
-  const handleConfirmDelete = () => {
-    // Call the parent component's delete function
-    if (onDeleteProject) {
-      onDeleteProject(project.id);
-    }
+  const handleConfirmDelete = (projectId, userId) => {
+    // if (onDeleteProject) {
+    //   onDeleteProject();
+    // }
+    deleteProjectById({projectId: project.id, userId: user.id}); // Wrap parameters in curly braces?
     handleModalClose();
   };
 
