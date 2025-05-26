@@ -5,7 +5,6 @@ import * as React from "react";
 import PropTypes from "prop-types";
 
 //TODO: should i prefetch the projects when mousing over the project list?
-// TODO: add a mutation to delete a project
 export default function ProjectList({selectedProjectId, setSelectedProjectId, projects, projectsQueryIsLoading, projectsQueryIsError, user}) {
   
 
@@ -71,6 +70,7 @@ ProjectList.propTypes = {
   projects: PropTypes.array,
   projectsQueryIsLoading: PropTypes.bool.isRequired,
   projectsQueryIsError: PropTypes.bool,
+  user: PropTypes.object, // Add this line to validate the 'user' prop
 };
 
 // This is pulling the projects from the local dev db
