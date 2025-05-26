@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import { useCreateProject } from "../hooks/queries/projects";
 
-export default function AddProjectForm() {
+export default function AddProjectForm({ user }) {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
+
+  // TODO: call the hook and destructure the mutate function
+  const { mutate: createProject } = useCreateProject();
+  // TODO: create a handleSubmit function that calls the mutate function
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newProjectName = name.trim();
+    createProject({ userId: user.id, projectData: { name: newProjectName, id: crypto.randomUUID(), description: "" } });
+    setName(""); // Reset form on success
+  };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -17,7 +29,7 @@ export default function AddProjectForm() {
   // };
 
   return (
-    <form onSubmit={() => {}}>
+    <form>
       <TextField
         label="Project name"
         variant="outlined"
@@ -31,6 +43,7 @@ export default function AddProjectForm() {
         type="submit"
         variant="text"
         color="primary"
+        onClick={handleSubmit}
         // disabled={createProject.isLoading || !name}
       >
         Add Project
