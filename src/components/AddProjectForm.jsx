@@ -7,7 +7,7 @@ export default function AddProjectForm({ user }) {
   const [error, setError] = useState(null);
 
   // TODO: call the hook and destructure the mutate function
-  const { mutate: createProject } = useCreateProject();
+  const { mutate: createProject, isPending } = useCreateProject();
   // TODO: create a handleSubmit function that calls the mutate function
 
   const handleSubmit = (e) => {
@@ -16,17 +16,6 @@ export default function AddProjectForm({ user }) {
     createProject({ userId: user.id, projectData: { name: newProjectName, id: crypto.randomUUID(), description: "" } });
     setName(""); // Reset form on success
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError(null);
-  //   try {
-  //     await createProject.mutateAsync({ name });
-  //     setName(""); // Reset form on success
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
 
   return (
     <form>
@@ -37,17 +26,16 @@ export default function AddProjectForm({ user }) {
         fullWidth
         value={name}
         onChange={(e) => setName(e.target.value)}
-        // disabled={createProject.isLoading}
+        disabled={isPending}
       />
       <Button
         type="submit"
         variant="text"
         color="primary"
         onClick={handleSubmit}
-        // disabled={createProject.isLoading || !name}
+        disabled={isPending}
       >
-        Add Project
-        {/* {createProject.isLoading ? "Creating..." : "+ Add Project"} */}
+        {isPending ? "Creating..." : "+ Add Project"}
       </Button>
       {error && <div style={{ color: "red" }}>{error}</div>}
     </form>
