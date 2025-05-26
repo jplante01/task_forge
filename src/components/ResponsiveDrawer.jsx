@@ -36,7 +36,7 @@ export default function ResponsiveDrawer({
         />
         <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
-      <AddProjectForm />
+      <AddProjectForm user={user}/>
       <ProjectList
         setSelectedProjectId={setSelectedProjectId}
         selectedProjectId={selectedProjectId}

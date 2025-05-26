@@ -50,3 +50,36 @@ export const useDeleteProjectById = () => {
     },
   });
 }
+
+export const useCreateProject = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data) => {
+      const { userId, projectData } = data;
+
+      return projectsApi.createProject(userId, projectData);
+    },
+    onMutate: async (data) => {
+      const { userId, projectData } = data;
+
+      await queryClient.cancelQueries({ queryKey: ["projects", userId] });
+
+      const previousProjects = queryClient.getQueryData(["projects", userId]);
+
+      queryClient.setQueryData(["projects", userId], (old) => {
+        return [...old, projectData];
+      });
+
+      return { previousProjects };
+    },
+    onError: () => {
+      queryClient.setQueryData(["projects"], (old) => {
+        return old;
+      });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["projects"]);
+    },
+  });
+};
