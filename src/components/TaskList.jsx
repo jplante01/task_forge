@@ -114,7 +114,7 @@ export default function TaskList({ projectId }) {
 
   const handleToggleStarred = (id) => {
     const task = tasks.find((task) => task.id === id);
-    console.log("task", task);
+    // console.log("task", task); works
     if (!task) return;
 
     updateTaskById({
@@ -127,7 +127,6 @@ export default function TaskList({ projectId }) {
   const handleToggleCompleted = (id) => {
     const task = tasks.find((task) => task.id === id);
     if (!task) return;
-
     updateTaskById({
       taskId: task.id,
       projectId: projectId,

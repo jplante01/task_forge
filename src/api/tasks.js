@@ -21,7 +21,7 @@ export const tasksApi = {
     return data[0];
   },
 
-  updateTask: async ({ id, ...updates }) => {
+  updateTask: async (id, updates) => {
     const { data, error } = await supabase
       .from("tasks")
       .update(updates)
