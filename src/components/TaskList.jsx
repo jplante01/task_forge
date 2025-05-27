@@ -13,17 +13,19 @@ import ClearIcon from "@mui/icons-material/Clear";
 import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
 import AddTaskForm from "./AddTaskForm";
-import { useGetTasksByProjectId, useDeleteTaskById } from "../hooks/queries/tasks";
-
-
-
+import {
+  useGetTasksByProjectId,
+  useDeleteTaskById,
+  useUpdateTaskById,
+} from "../hooks/queries/tasks";
 
 function ActiveTaskItem({
   task,
   toggleTaskComplete,
   handleClickDelete,
-  // toggleTaskStarred,
-  // deleteTask,
+  handleToggleStarred,
+  handleToggleCompleted
+
 }) {
   return (
     <Stack direction="row" spacing={1}>
@@ -32,17 +34,13 @@ function ActiveTaskItem({
           <Checkbox
             disableRipple
             checked={task.completed}
-            onChange={() =>
-              toggleTaskComplete.mutate({
-                id: task.id,
-                completed: task.completed,
-              })
-            }
+            onClick={handleToggleCompleted}
           />
         </ListItemIcon>
         <ListItemText primary={task.title} />
         <IconButton disableRipple edge="end" aria-label="star">
           <StarIcon
+            onClick={handleToggleStarred}
             sx={{
               color: task.starred ? "yellow" : "grey.400",
               "&:hover": { color: "grey.500" },
@@ -51,7 +49,8 @@ function ActiveTaskItem({
         </IconButton>
       </ListItem>
       <IconButton disableRipple aria-label="delete" size="small">
-        <ClearIcon onClick={handleClickDelete}
+        <ClearIcon
+          onClick={handleClickDelete}
           sx={{ color: "grey.300", "&:hover": { color: "grey.500" } }}
         />
       </IconButton>
@@ -61,10 +60,10 @@ function ActiveTaskItem({
 
 function CompletedTaskItem({
   task,
-  handleClickDelete
-  // toggleTaskComplete,
-  // toggleTaskStarred,
-  // deleteTask,
+  handleClickDelete,
+  handleToggleStarred,
+  handleToggleCompleted
+
 }) {
   return (
     <Stack direction="row" spacing={1}>
@@ -74,17 +73,13 @@ function CompletedTaskItem({
             disableRipple
             color="gray.500"
             checked={task.completed}
-            // onChange={() =>
-            //   toggleTaskComplete.mutate({
-            //     id: task.id,
-            //     completed: task.completed,
-            //   })
-            // }
+            onClick={handleToggleCompleted }
           />
         </ListItemIcon>
         <ListItemText primary={task.title} sx={{ color: "grey.500" }} />
         <IconButton disableRipple edge="end" aria-label="star">
           <StarIcon
+            onClick={handleToggleStarred}
             sx={{
               color: task.starred ? "yellow" : "grey.400",
               "&:hover": { color: "grey.500" },
@@ -93,7 +88,8 @@ function CompletedTaskItem({
         </IconButton>
       </ListItem>
       <IconButton disableRipple aria-label="delete" size="small">
-        <ClearIcon onClick={handleClickDelete}
+        <ClearIcon
+          onClick={handleClickDelete}
           sx={{ color: "grey.300", "&:hover": { color: "grey.500" } }}
         />
       </IconButton>
@@ -102,14 +98,43 @@ function CompletedTaskItem({
 }
 
 export default function TaskList({ projectId }) {
-
   const { mutate: deleteTaskById } = useDeleteTaskById();
 
-  const { data: tasks, isPending, isError, error } = useGetTasksByProjectId(projectId, {enabled: !!projectId});
-  
+  const {
+    data: tasks,
+    isPending,
+    isError,
+    error,
+  } = useGetTasksByProjectId(projectId, { enabled: !!projectId });
+
+  const { mutate: updateTaskById } = useUpdateTaskById();
+
   const handleClickDelete = (id) => {
     deleteTaskById({ taskId: id, projectId });
   };
+
+  const handleToggleStarred = (id) => {
+    const task = tasks.find((task) => task.id === id);
+    console.log("task", task);
+    if (!task) return;
+
+    updateTaskById({
+      taskId: task.id,
+      projectId: projectId,
+      updates: {starred: !task.starred},
+    });
+  };
+
+  const handleToggleCompleted = (id) => {
+    const task = tasks.find((task) => task.id === id);
+    if (!task) return;
+
+    updateTaskById({
+      taskId: task.id,
+      projectId: projectId,
+      updates: { completed: !task.completed },
+    });
+  }
 
   if (isPending) {
     return <Typography>Loading...</Typography>;
@@ -140,11 +165,10 @@ export default function TaskList({ projectId }) {
               <ActiveTaskItem
                 key={task.id}
                 task={task}
-                deleteTaskById={deleteTaskById}
+                deleteTaskById={deleteTaskById} // TODO: remove?
                 handleClickDelete={() => handleClickDelete(task.id)}
-                // toggleTaskComplete={toggleTaskComplete}
-                // toggleTaskStarred={toggleTaskStarred}
-                // deleteTask={deleteTask}
+                handleToggleStarred={() => handleToggleStarred(task.id)}
+                handleToggleCompleted={() => handleToggleCompleted(task.id)}
               />
             ))}
           </List>
@@ -163,6 +187,8 @@ export default function TaskList({ projectId }) {
               task={task}
               deleteTaskById={deleteTaskById}
               handleClickDelete={() => handleClickDelete(task.id)}
+              handleToggleStarred={() => handleToggleStarred(task.id)}
+              handleToggleCompleted={() => handleToggleCompleted(task.id)}
               // toggleTaskComplete={toggleTaskComplete}
               // toggleTaskStarred={toggleTaskStarred}
               // deleteTask={deleteTask}

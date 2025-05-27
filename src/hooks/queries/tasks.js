@@ -37,7 +37,8 @@ export const useDeleteTaskById = () => {
       queryClient.invalidateQueries(["tasks"]);
     },
   });
-}
+};
+
 export const useCreateTask = () => {
   const queryClient = useQueryClient();
 
@@ -64,6 +65,39 @@ export const useCreateTask = () => {
     },
     onSettled: () => {
       queryClient.invalidateQueries(["tasks"]);
+    },
+  });
+};
+
+export const useUpdateTaskById = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data) => {
+      const { taskId, updates } = data;
+      return tasksApi.updateTask(taskId, updates);
+    },
+    onMutate: async (data) => {
+      const { taskId, updates, projectId } = data;
+      await queryClient.cancelQueries({ queryKey: ["tasks", projectId] });
+
+      const previousTasks = queryClient.getQueryData(["tasks", projectId]);
+
+      queryClient.setQueryData(["tasks", projectId], (old) => {
+        return old.map((task) =>
+          task.id === taskId ? { ...task, ...updates } : task,
+        );
+      });
+
+      return { previousTasks };
+    },
+    onError: (data) => {
+      const { projectId } = data;
+      queryClient.setQueryData(["tasks", projectId], (old) => old);
+    },
+    onSettled: (data) => {
+      const { projectId } = data;
+      queryClient.invalidateQueries(["tasks", projectId]);
     },
   });
 };
