@@ -78,11 +78,15 @@ export const useUpdateTaskById = () => {
       return tasksApi.updateTask(taskId, updates);
     },
     onMutate: async (data) => {
+
+
       const { taskId, updates, projectId } = data;
+      console.log("Updating task", taskId, updates, projectId);
       await queryClient.cancelQueries({ queryKey: ["tasks", projectId] });
 
       const previousTasks = queryClient.getQueryData(["tasks", projectId]);
 
+      // console.log("Previous tasks", previousTasks); working
       queryClient.setQueryData(["tasks", projectId], (old) => {
         return old.map((task) =>
           task.id === taskId ? { ...task, ...updates } : task,
