@@ -102,18 +102,14 @@ function CompletedTaskItem({
 }
 
 export default function TaskList({ projectId }) {
-  // const { tasks, toggleTaskComplete, toggleTaskStarred, deleteTask } =
-  //   useContext(UIStateContext);
-  // TODO: Need selectedProject, useEffect?
-  //TODO:
 
   const { mutate: deleteTaskById } = useDeleteTaskById();
 
+  const { data: tasks, isPending, isError, error } = useGetTasksByProjectId(projectId, {enabled: !!projectId});
+  
   const handleClickDelete = (id) => {
     deleteTaskById({ taskId: id, projectId });
   };
-
-  const { data: tasks, isPending, isError, error } = useGetTasksByProjectId(projectId, {enabled: !!projectId});
 
   if (isPending) {
     return <Typography>Loading...</Typography>;
@@ -191,12 +187,14 @@ export default function TaskList({ projectId }) {
 ActiveTaskItem.propTypes = {
   task: PropTypes.object.isRequired,
   toggleTaskComplete: PropTypes.object.isRequired,
+  handleClickDelete: PropTypes.func.isRequired,
   toggleTaskStarred: PropTypes.object,
   deleteTask: PropTypes.object,
 };
 
 CompletedTaskItem.propTypes = {
   task: PropTypes.object.isRequired,
+  handleClickDelete: PropTypes.func.isRequired,
 };
 
 TaskList.propTypes = {
