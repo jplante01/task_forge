@@ -13,10 +13,15 @@ import ClearIcon from "@mui/icons-material/Clear";
 import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
 import AddTaskForm from "./AddTaskForm";
-import { useGetTasksByProjectId } from "../hooks/queries/tasks";
+import { useGetTasksByProjectId, useDeleteTaskById } from "../hooks/queries/tasks";
+
+
+
+
 function ActiveTaskItem({
   task,
   toggleTaskComplete,
+  handleClickDelete,
   // toggleTaskStarred,
   // deleteTask,
 }) {
@@ -46,7 +51,7 @@ function ActiveTaskItem({
         </IconButton>
       </ListItem>
       <IconButton disableRipple aria-label="delete" size="small">
-        <ClearIcon
+        <ClearIcon onClick={handleClickDelete}
           sx={{ color: "grey.300", "&:hover": { color: "grey.500" } }}
         />
       </IconButton>
@@ -56,6 +61,7 @@ function ActiveTaskItem({
 
 function CompletedTaskItem({
   task,
+  handleClickDelete
   // toggleTaskComplete,
   // toggleTaskStarred,
   // deleteTask,
@@ -87,7 +93,7 @@ function CompletedTaskItem({
         </IconButton>
       </ListItem>
       <IconButton disableRipple aria-label="delete" size="small">
-        <ClearIcon
+        <ClearIcon onClick={handleClickDelete}
           sx={{ color: "grey.300", "&:hover": { color: "grey.500" } }}
         />
       </IconButton>
@@ -100,6 +106,13 @@ export default function TaskList({ projectId }) {
   //   useContext(UIStateContext);
   // TODO: Need selectedProject, useEffect?
   //TODO:
+
+  const { mutate: deleteTaskById } = useDeleteTaskById();
+
+  const handleClickDelete = (id) => {
+    deleteTaskById({ taskId: id, projectId });
+  };
+
   const { data: tasks, isPending, isError, error } = useGetTasksByProjectId(projectId, {enabled: !!projectId});
 
   if (isPending) {
@@ -131,6 +144,8 @@ export default function TaskList({ projectId }) {
               <ActiveTaskItem
                 key={task.id}
                 task={task}
+                deleteTaskById={deleteTaskById}
+                handleClickDelete={() => handleClickDelete(task.id)}
                 // toggleTaskComplete={toggleTaskComplete}
                 // toggleTaskStarred={toggleTaskStarred}
                 // deleteTask={deleteTask}
@@ -150,6 +165,8 @@ export default function TaskList({ projectId }) {
             <CompletedTaskItem
               key={task.id}
               task={task}
+              deleteTaskById={deleteTaskById}
+              handleClickDelete={() => handleClickDelete(task.id)}
               // toggleTaskComplete={toggleTaskComplete}
               // toggleTaskStarred={toggleTaskStarred}
               // deleteTask={deleteTask}
