@@ -21,7 +21,6 @@ import {
 
 function ActiveTaskItem({
   task,
-  toggleTaskComplete,
   handleClickDelete,
   handleToggleStarred,
   handleToggleCompleted
@@ -189,9 +188,6 @@ export default function TaskList({ projectId }) {
               handleClickDelete={() => handleClickDelete(task.id)}
               handleToggleStarred={() => handleToggleStarred(task.id)}
               handleToggleCompleted={() => handleToggleCompleted(task.id)}
-              // toggleTaskComplete={toggleTaskComplete}
-              // toggleTaskStarred={toggleTaskStarred}
-              // deleteTask={deleteTask}
             />
           ))}
         </List>
@@ -212,17 +208,17 @@ export default function TaskList({ projectId }) {
 
 ActiveTaskItem.propTypes = {
   task: PropTypes.object.isRequired,
-  toggleTaskComplete: PropTypes.object.isRequired,
   handleClickDelete: PropTypes.func.isRequired,
-  toggleTaskStarred: PropTypes.object,
-  deleteTask: PropTypes.object,
+  handleToggleStarred: PropTypes.func.isRequired,
+  handleToggleCompleted: PropTypes.func.isRequired,
 };
 
 CompletedTaskItem.propTypes = {
   task: PropTypes.object.isRequired,
   handleClickDelete: PropTypes.func.isRequired,
+  handleToggleStarred: PropTypes.func.isRequired,
+  handleToggleCompleted: PropTypes.func.isRequired,
 };
-
 TaskList.propTypes = {
   projectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     .isRequired,
