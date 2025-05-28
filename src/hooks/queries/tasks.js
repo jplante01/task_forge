@@ -44,27 +44,35 @@ export const useCreateTask = () => {
 
   return useMutation({
     mutationFn: (data) => {
-      const { projectId, taskData } = data;
-      return tasksApi.createTask(projectId, taskData);
+      console.log('mutationFn fired', data);
+      const newTask = data;
+      console.log("Creating task", newTask);
+      return tasksApi.createTask(newTask);
     },
     onMutate: async (data) => {
-      const { projectId, taskData } = data;
+      // console.log("onMutate fired", data);
+      const newTask = data;
+      console.log("New task data:", newTask.project_id);
+      await queryClient.cancelQueries({ queryKey: ["tasks", newTask.project_id] });
 
-      await queryClient.cancelQueries({ queryKey: ["tasks", projectId] });
+      const previousTasks = queryClient.getQueryData([
+        "tasks",
+        newTask.project_id,
+      ]);
 
-      const previousTasks = queryClient.getQueryData(["tasks", projectId]);
-
-      queryClient.setQueryData(["tasks", projectId], (old) => {
-        return [...old, taskData];
+      queryClient.setQueryData(["tasks", newTask.project_id], (old) => {
+        return [...old, newTask];
       });
 
       return { previousTasks };
     },
-    onError: () => {
-      queryClient.setQueryData(["tasks"], (old) => old);
+    onError: (data) => {
+      const { project_id } = data;
+      queryClient.setQueryData(["tasks", project_id], (old) => old);
     },
-    onSettled: () => {
-      queryClient.invalidateQueries(["tasks"]);
+    onSettled: (data) => {
+      const { project_id } = data;
+      queryClient.invalidateQueries(["tasks", project_id]);
     },
   });
 };

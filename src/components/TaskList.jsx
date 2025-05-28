@@ -147,7 +147,7 @@ export default function TaskList({ projectId }) {
     const activeTasks = tasks.filter((task) => !task.completed);
     return (
       <Stack direction="column" spacing={0}>
-        <AddTaskForm />
+        <AddTaskForm projectId={projectId}/>
         <Typography
           pt={4}
           variant="subtitle1"
