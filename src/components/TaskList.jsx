@@ -23,8 +23,7 @@ function ActiveTaskItem({
   task,
   handleClickDelete,
   handleToggleStarred,
-  handleToggleCompleted
-
+  handleToggleCompleted,
 }) {
   return (
     <Stack direction="row" spacing={1}>
@@ -61,8 +60,7 @@ function CompletedTaskItem({
   task,
   handleClickDelete,
   handleToggleStarred,
-  handleToggleCompleted
-
+  handleToggleCompleted,
 }) {
   return (
     <Stack direction="row" spacing={1}>
@@ -72,7 +70,7 @@ function CompletedTaskItem({
             disableRipple
             color="gray.500"
             checked={task.completed}
-            onClick={handleToggleCompleted }
+            onClick={handleToggleCompleted}
           />
         </ListItemIcon>
         <ListItemText primary={task.title} sx={{ color: "grey.500" }} />
@@ -120,7 +118,7 @@ export default function TaskList({ projectId }) {
     updateTaskById({
       taskId: task.id,
       projectId: projectId,
-      updates: {starred: !task.starred},
+      updates: { starred: !task.starred },
     });
   };
 
@@ -132,7 +130,7 @@ export default function TaskList({ projectId }) {
       projectId: projectId,
       updates: { completed: !task.completed },
     });
-  }
+  };
 
   if (isPending) {
     return <Typography>Loading...</Typography>;
@@ -144,10 +142,16 @@ export default function TaskList({ projectId }) {
 
   if (tasks) {
     const completedTasks = tasks.filter((task) => task.completed);
-    const activeTasks = tasks.filter((task) => !task.completed);
+    const activeTasks = tasks
+      .filter((task) => !task.completed)
+      .sort((a, b) => {
+        if (a.starred && !b.starred) return -1;
+        if (!a.starred && b.starred) return 1;
+        return 0;
+      });
     return (
       <Stack direction="column" spacing={0}>
-        <AddTaskForm projectId={projectId}/>
+        <AddTaskForm projectId={projectId} />
         <Typography
           pt={4}
           variant="subtitle1"
