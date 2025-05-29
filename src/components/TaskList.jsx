@@ -78,7 +78,7 @@ function CompletedTaskItem({
           <StarIcon
             onClick={handleToggleStarred}
             sx={{
-              color: task.starred ? "yellow" : "grey.400",
+              color: "grey.400",
               "&:hover": { color: "grey.500" },
             }}
           />
