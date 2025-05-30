@@ -1,23 +1,25 @@
-import { createTheme } from '@mui/material/styles';
-import { red, grey } from '@mui/material/colors';
+import { createTheme } from "@mui/material/styles";
+import { red, grey } from "@mui/material/colors";
 import "@fontsource/permanent-marker";
+import { useToggleColorMode } from "./hooks/useAppTheme";
 
-// Create a theme instance.
+const { mode } = useToggleColorMode();
+
 const theme = createTheme({
   cssVariables: true,
   typography: {
-      logoFont: {
+    logoFont: {
       fontFamily: "Permanent Marker",
       fontSize: "2rem",
     },
   },
   palette: {
-    mode: 'dark',
+    mode: mode,
     primary: {
-      main: '#556cd6',
+      main: "#556cd6",
     },
     secondary: {
-      main: '#19857b',
+      main: "#19857b",
     },
     grey: {
       ...grey,
