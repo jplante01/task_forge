@@ -1,10 +1,9 @@
 import * as React from "react";
 import TasksMain from "./pages/TasksMain";
 import { AuthProvider } from "./contexts/AuthContext";
-import { ThemeProvider, CssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import useThemeMode from "./hooks/useThemeMode";
+import { ThemeModeProvider } from "./contexts/ThemeModeContext";
 
 const queryClient = new QueryClient({
   // defaultOptions: {
@@ -20,16 +19,14 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
-  const { theme } = useThemeMode();
   return (
     <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <QueryClientProvider client={queryClient}>
-          <TasksMain />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </ThemeProvider>
+      <ThemeModeProvider>
+          <QueryClientProvider client={queryClient}>
+            <TasksMain />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+      </ThemeModeProvider>
     </AuthProvider>
   );
 }

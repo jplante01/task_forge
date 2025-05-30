@@ -44,15 +44,11 @@ export const useCreateTask = () => {
 
   return useMutation({
     mutationFn: (data) => {
-      console.log('mutationFn fired', data);
       const newTask = data;
-      console.log("Creating task", newTask);
       return tasksApi.createTask(newTask);
     },
     onMutate: async (data) => {
-      // console.log("onMutate fired", data);
       const newTask = data;
-      console.log("New task data:", newTask.project_id);
       await queryClient.cancelQueries({ queryKey: ["tasks", newTask.project_id] });
 
       const previousTasks = queryClient.getQueryData([
@@ -89,12 +85,10 @@ export const useUpdateTaskById = () => {
 
 
       const { taskId, updates, projectId } = data;
-      console.log("Updating task", taskId, updates, projectId);
       await queryClient.cancelQueries({ queryKey: ["tasks", projectId] });
 
       const previousTasks = queryClient.getQueryData(["tasks", projectId]);
 
-      // console.log("Previous tasks", previousTasks); working
       queryClient.setQueryData(["tasks", projectId], (old) => {
         return old.map((task) =>
           task.id === taskId ? { ...task, ...updates } : task,
