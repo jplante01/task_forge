@@ -10,10 +10,8 @@ export default function AddTaskForm({ projectId }) {
   const { mutate: createTask, isPending } = useCreateTask();
 
   const handleSubmit = (e) => {
-    // console.log('handler fired') works
     e.preventDefault();
     const newTaskName = taskName.trim();
-    // console.log('newTaskName', newTaskName) works
     if (!newTaskName) {
       setError("Task name cannot be empty");
       return;

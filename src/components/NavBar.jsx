@@ -7,14 +7,14 @@ import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { DarkMode } from "@mui/icons-material";
 import PropTypes from "prop-types";
-// import { getProjectsByUser } from "../hooks/queries/projects";
+import { useThemeModeContext } from "../contexts/ThemeModeContext";
+
 export default function NavBar({
   drawerWidth,
   handleDrawerToggle,
   selectedProject,
 }) {
-  // const { data: project, isLoading, isError } = getProjectById(selectedProjectId, { enabled: !!projects});
-
+  const { toggleMode } = useThemeModeContext();
   return (
     <AppBar
       position="fixed"
@@ -46,7 +46,7 @@ export default function NavBar({
             )}
           </Typography>
           {/* TODO: insert a theme toggle */}
-          <DarkMode />
+          <DarkMode onClick={() => toggleMode()}/>
         </Stack>
       </Toolbar>
     </AppBar>

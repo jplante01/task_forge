@@ -12,7 +12,6 @@ export const tasksApi = {
   },
 
   createTask: async (taskData) => {
-    console.log("Creating task", taskData);
     const { data, error } = await supabase
       .from("tasks")
       .insert(taskData) // what shape is supabase expecting? 
