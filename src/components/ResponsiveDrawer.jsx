@@ -1,10 +1,12 @@
-import { Drawer, Stack, Typography } from "@mui/material";
+import { Drawer, Stack, Typography, Box } from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
-import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
+// import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
 import AddProjectForm from "./AddProjectForm";
 import ProjectListItem from "./ProjectListItem";
 import ProjectList from "./ProjectList";
+import { useThemeModeContext } from "../contexts/ThemeModeContext";
+import { TaskForgeLogo } from "../logo/TaskForgeLogo";
 
 export default function ResponsiveDrawer({
   drawerWidth,
@@ -21,22 +23,32 @@ export default function ResponsiveDrawer({
   {
     /* Drawer content provided to both mobile drawer and desktop drawer*/
   }
+
+  const { theme } = useThemeModeContext();
+
   const drawer = (
     <Stack margin="1rem">
       <Stack direction="row" alignItems="center" sx={{ padding: "1rem" }}>
-        <img
-          src={TaskForgeLogo}
-          alt="TaskForge Logo"
-          style={{
+
+        <Box
+          sx={{
             width: "80px",
             height: "80px",
-            color: "primary",
-            padding: "0.5rem",
+            marginRight: "0.5rem",
           }}
-        />
+        >
+          <TaskForgeLogo
+            sx={{
+              width: "100%",
+              height: "100%",
+              color: theme.palette.text.main,
+              // padding: "0.5rem",
+            }}
+          />
+        </Box>
         <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
-      <AddProjectForm user={user}/>
+      <AddProjectForm user={user} />
       <ProjectList
         setSelectedProjectId={setSelectedProjectId}
         selectedProjectId={selectedProjectId}
