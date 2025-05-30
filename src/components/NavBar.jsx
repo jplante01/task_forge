@@ -1,13 +1,18 @@
 import AppBar from "@mui/material/AppBar";
+import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { DarkMode } from "@mui/icons-material";
 import PropTypes from "prop-types";
 // import { getProjectsByUser } from "../hooks/queries/projects";
-export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProject }) {
-
+export default function NavBar({
+  drawerWidth,
+  handleDrawerToggle,
+  selectedProject,
+}) {
   // const { data: project, isLoading, isError } = getProjectById(selectedProjectId, { enabled: !!projects});
 
   return (
@@ -30,15 +35,19 @@ export default function NavBar({ drawerWidth, handleDrawerToggle, selectedProjec
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          {!selectedProject ? (
-            <Typography>Loading...</Typography>
-          ) : (
-            selectedProject.name || 'No project selected'
-            // projects.find((project) => project.id === selectedProjectId)?.name ||
-            // "No project selected"
-          )}
-        </Typography>{" "}
+        <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between">
+          <Typography variant="h6" noWrap component="div">
+            {!selectedProject ? (
+              <Typography>Loading...</Typography>
+            ) : (
+              selectedProject.name || "No project selected"
+              // projects.find((project) => project.id === selectedProjectId)?.name ||
+              // "No project selected"
+            )}
+          </Typography>
+          {/* TODO: insert a theme toggle */}
+          <DarkMode />
+        </Stack>
       </Toolbar>
     </AppBar>
   );
@@ -51,10 +60,7 @@ NavBar.propTypes = {
     name: PropTypes.string,
     // add other properties of selectedProject if needed
   }),
-  selectedProjectId: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  selectedProjectId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   projects: PropTypes.object, // or PropTypes.array if projects is an array
 };
 
