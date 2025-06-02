@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import "@fontsource/permanent-marker";
+import { red, grey } from "@mui/material/colors";
 
 const ThemeModeContext = createContext();
 
@@ -36,6 +37,12 @@ export function ThemeModeProvider({ children }) {
       background: {
         default: mode === "light" ? "#f5f5f5" : "#121212",
         paper: mode === "light" ? "#ffffff" : "#1e1e1e",
+      },
+      grey: {
+        ...grey,
+      },
+      error: {
+        main: red.A400,
       },
     },
   });
