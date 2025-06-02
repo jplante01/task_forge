@@ -38,7 +38,7 @@ export default function NavBar({
         <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between">
           <Typography variant="h6" noWrap component="div">
             {!selectedProject ? (
-              <Typography>Loading...</Typography>
+              ""
             ) : (
               selectedProject.name || "No project selected"
               // projects.find((project) => project.id === selectedProjectId)?.name ||
