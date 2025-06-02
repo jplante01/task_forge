@@ -63,12 +63,19 @@ export default function ResponsiveDrawer({
         justifyContent="flex-end"
         alignItems="flex-end"
       >
-        <Logout
-          sx={{ marginBottom: "1rem" }}
-          onClick={() => {
-            signOut();
-          }}
-        ></Logout>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Typography variant="body1">Logout</Typography>
+          <Logout
+            sx={{
+              marginBottom: "1rem",
+              color: "grey.500",
+              "&:hover": { color: theme.palette.text.secondary },
+            }}
+            onClick={() => {
+              signOut();
+            }}
+          ></Logout>
+        </Stack>
       </Stack>
     </Stack>
   );
