@@ -6,6 +6,7 @@ import TaskList from "../components/TaskList";
 const drawerWidth = 340;
 import { getProjectsByUser } from "../hooks/queries/projects";
 import { useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 //TODO: eliminate layout shift on first render of TasksMain
 // TODO: pass loading to the projectslist
@@ -13,9 +14,7 @@ export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [selectedProjectId, setSelectedProjectId] = React.useState(null);
-  const [user, setUser] = React.useState({
-    id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-  });
+  const { user } = useAuth();
   const {
     data: projects,
     isLoading: projectsQueryIsLoading,
