@@ -52,7 +52,6 @@ export default function TasksMain() {
       <NavBar
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
-        selectedProjectId={selectedProjectId}
         selectedProject={projects?.find(
           (project) => project.id === selectedProjectId,
         )}
