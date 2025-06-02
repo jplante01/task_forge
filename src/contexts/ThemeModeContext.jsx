@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import "@fontsource/permanent-marker";
@@ -16,7 +17,8 @@ export function ThemeModeProvider({ children }) {
     localStorage.setItem("themeMode", mode);
   }, [mode]);
 
-  const toggleMode = () => setMode((prev) => (prev === "light" ? "dark" : "light"));
+  const toggleMode = () =>
+    setMode((prev) => (prev === "light" ? "dark" : "light"));
   const setThemeMode = (newMode) => {
     if (["light", "dark"].includes(newMode)) setMode(newMode);
   };
@@ -48,22 +50,27 @@ export function ThemeModeProvider({ children }) {
   });
 
   return (
-    <ThemeModeContext.Provider value={{
-      mode,
-      theme,
-      toggleMode,
-      setThemeMode,
-      isDark: mode === "dark",
-      isLight: mode === "light",
-    }}>
+    <ThemeModeContext.Provider
+      value={{
+        mode,
+        theme,
+        toggleMode,
+        setThemeMode,
+        isDark: mode === "dark",
+        isLight: mode === "light",
+      }}
+    >
       <ThemeProvider theme={theme}>
         <CssBaseline />
-      {children}
-    </ThemeProvider>
-    
+        {children}
+      </ThemeProvider>
     </ThemeModeContext.Provider>
   );
 }
+
+ThemeModeProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export function useThemeModeContext() {
   return useContext(ThemeModeContext);
