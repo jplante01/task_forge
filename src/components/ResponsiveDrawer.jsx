@@ -7,6 +7,7 @@ import ProjectListItem from "./ProjectListItem";
 import ProjectList from "./ProjectList";
 import { useThemeModeContext } from "../contexts/ThemeModeContext";
 import { TaskForgeLogo } from "../logo/TaskForgeLogo";
+import { Logout } from "@mui/icons-material";
 
 export default function ResponsiveDrawer({
   drawerWidth,
@@ -19,6 +20,7 @@ export default function ResponsiveDrawer({
   projectsQueryIsLoading,
   projectsQueryIsError,
   user,
+  signOut,
 }) {
   {
     /* Drawer content provided to both mobile drawer and desktop drawer*/
@@ -27,9 +29,8 @@ export default function ResponsiveDrawer({
   const { theme } = useThemeModeContext();
 
   const drawer = (
-    <Stack margin="1rem">
+    <Stack margin="1rem" sx={{ height: "100%" }}>
       <Stack direction="row" alignItems="center" sx={{ padding: "1rem" }}>
-
         <Box
           sx={{
             width: "80px",
@@ -57,6 +58,18 @@ export default function ResponsiveDrawer({
         projectsQueryIsError={projectsQueryIsError}
         user={user}
       />
+      <Stack
+        sx={{ height: "100%" }}
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
+        <Logout
+          sx={{ marginBottom: "1rem" }}
+          onClick={() => {
+            signOut();
+          }}
+        ></Logout>
+      </Stack>
     </Stack>
   );
 
@@ -117,6 +130,7 @@ ResponsiveDrawer.propTypes = {
   projectsQueryIsLoading: PropTypes.bool.isRequired,
   projectsQueryIsError: PropTypes.bool.isRequired,
   user: PropTypes.object,
+  signOut: PropTypes.func.isRequired,
 };
 
 ProjectListItem.propTypes = {

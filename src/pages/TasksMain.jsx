@@ -14,14 +14,12 @@ export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [selectedProjectId, setSelectedProjectId] = React.useState(null);
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const {
     data: projects,
     isLoading: projectsQueryIsLoading,
     isError: projectsQueryIsError,
-  } = getProjectsByUser(
-    user,
-  );
+  } = getProjectsByUser(user);
 
   useEffect(() => {
     if (projects?.length > 0 && selectedProjectId === null) {
@@ -85,6 +83,7 @@ export default function TasksMain() {
         projectsQueryIsLoading={projectsQueryIsLoading}
         projectsQueryIsError={projectsQueryIsError}
         user={user}
+        signOut={signOut}
       />
     </Box>
   );
