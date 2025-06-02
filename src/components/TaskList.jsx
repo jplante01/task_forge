@@ -174,13 +174,15 @@ export default function TaskList({ projectId }) {
             ))}
           </List>
         )}
-        <Typography
-          pt={4}
-          variant="subtitle1"
-          sx={{ color: "grey.800", fontWeight: "bold" }}
-        >
-          Completed Tasks
-        </Typography>
+        {completedTasks.length > 0 && (
+          <Typography
+            pt={4}
+            variant="subtitle1"
+            sx={{ color: "grey.800", fontWeight: "bold" }}
+          >
+            Completed Tasks
+          </Typography>
+        )}
         <List>
           {completedTasks.map((task) => (
             <CompletedTaskItem
