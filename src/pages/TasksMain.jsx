@@ -14,7 +14,10 @@ export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [selectedProjectId, setSelectedProjectId] = React.useState(null);
+  const [selectedProject, setSelectedProject] = React.useState(null);
+
   const { user, signOut } = useAuth();
+
   const {
     data: projects,
     isLoading: projectsQueryIsLoading,
@@ -25,7 +28,26 @@ export default function TasksMain() {
     if (projects?.length > 0 && selectedProjectId === null) {
       setSelectedProjectId(projects[0].id);
     }
-  }, [projects]);
+
+    if (selectedProjectId) {
+      const foundProject = projects?.find(
+        (project) => project.id === selectedProjectId,
+      );
+      if (foundProject) {
+        setSelectedProject(foundProject);
+      } else {
+        // If selected project is not found, select the first project if available
+        if (projects?.length > 0) {
+          setSelectedProjectId(projects[0].id);
+          setSelectedProject(projects[0]);
+        } else {
+          // If no projects are available, clear the selection
+          setSelectedProjectId(null);
+          setSelectedProject(null);
+        }
+      }
+    }
+  }, [projects, selectedProjectId]);
 
   // const handleProjectSelect = (projectId) => {
   //   setSelectedProjectId(projectId);
@@ -52,9 +74,7 @@ export default function TasksMain() {
       <NavBar
         drawerWidth={drawerWidth}
         handleDrawerToggle={handleDrawerToggle}
-        selectedProject={projects?.find(
-          (project) => project.id === selectedProjectId,
-        )}
+        selectedProject={selectedProject}
       />
       <Box
         sx={{
