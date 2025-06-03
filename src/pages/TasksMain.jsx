@@ -28,7 +28,6 @@ export default function TasksMain() {
     if (projects?.length > 0 && selectedProjectId === null) {
       setSelectedProjectId(projects[0].id);
     }
-
     if (selectedProjectId) {
       const foundProject = projects?.find(
         (project) => project.id === selectedProjectId,
