@@ -131,9 +131,9 @@ export default function TaskList({ projectId }) {
     });
   };
 
-  if (isPending) {
-    return <Typography>Loading...</Typography>;
-  }
+  // if (isPending) {
+  //   return <Typography>Loading...</Typography>;
+  // }
 
   if (isError) {
     return <Typography>Error loading Tasks: {error.message}</Typography>;
