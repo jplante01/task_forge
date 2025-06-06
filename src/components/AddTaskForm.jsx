@@ -1,6 +1,7 @@
 import { TextField, Box, Button } from "@mui/material";
 import * as React from "react";
 import { useCreateTask } from "../hooks/queries/tasks";
+import { v4 as uuidv4 } from "uuid";
 // TODO: pass the projectId prop
 
 export default function AddTaskForm({ projectId }) {
@@ -19,7 +20,7 @@ export default function AddTaskForm({ projectId }) {
     createTask({
       project_id: projectId,
       title: newTaskName,
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       description: "",
       completed: false,
       starred: false,

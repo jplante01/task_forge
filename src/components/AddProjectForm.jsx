@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useCreateProject } from "../hooks/queries/projects";
+import { v4 as uuidv4 } from "uuid";
+import PropTypes from "prop-types";
 
 export default function AddProjectForm({ user }) {
   const [name, setName] = useState("");
-  const [error, setError] = useState(null);
-
-  // TODO: call the hook and destructure the mutate function
   const { mutate: createProject, isPending } = useCreateProject();
-  // TODO: create a handleSubmit function that calls the mutate function
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newProjectName = name.trim();
-    createProject({ userId: user.id, projectData: { name: newProjectName, id: crypto.randomUUID(), description: "" } });
+    createProject({
+      userId: user.id,
+      projectData: { name: newProjectName, id: uuidv4(), description: "" },
+    });
     setName(""); // Reset form on success
   };
 
@@ -37,7 +38,12 @@ export default function AddProjectForm({ user }) {
       >
         {isPending ? "Creating..." : "+ Add Project"}
       </Button>
-      {error && <div style={{ color: "red" }}>{error}</div>}
     </form>
   );
 }
+
+AddProjectForm.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};
