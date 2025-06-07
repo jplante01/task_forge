@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "deploy": "npm run build && aws s3 sync ./dist s3://task-forge-85749303 --delete"
+    "serve": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
