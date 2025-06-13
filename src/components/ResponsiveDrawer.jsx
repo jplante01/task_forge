@@ -30,7 +30,11 @@ export default function ResponsiveDrawer({
 
   const drawer = (
     <Stack margin="1rem" sx={{ height: "100%" }}>
-      <Stack direction="row" alignItems="center" sx={{ padding: "1rem" }}>
+      <Stack
+        direction="row"
+        alignItems="center"
+        sx={{ padding: "1rem", marginBottom: "2rem" }}
+      >
         <Box
           sx={{
             width: "80px",
@@ -49,7 +53,9 @@ export default function ResponsiveDrawer({
         </Box>
         <Typography variant="logoFont">TASKFORGE</Typography>
       </Stack>
-      <AddProjectForm user={user} />
+      <Box sx={{ marginBottom: "2rem" }}>
+        <AddProjectForm user={user} />
+      </Box>
       <ProjectList
         setSelectedProjectId={setSelectedProjectId}
         selectedProjectId={selectedProjectId}
