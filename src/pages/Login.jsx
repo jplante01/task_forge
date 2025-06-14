@@ -12,14 +12,14 @@ export default function Login() {
       <Stack
         direction="row"
         alignItems="center"
-        sx={{ padding: "1rem", marginBottom: "2rem" }}
+        sx={{ padding: {xs: "0.5rem", sm: "1.5rem"}, marginBottom: "2rem" }}
         justifyContent="space-between"
       >
         <Stack direction="row" alignItems="center">
           <Box
             sx={{
-              width: "80px",
-              height: "80px",
+              width: {xs: "60px", sm: "80px"},
+              height: {xs: "60px", sm: "80px"},
               marginRight: "0.5rem",
             }}
           >
@@ -32,10 +32,10 @@ export default function Login() {
               }}
             />
           </Box>
-          <Typography variant="logoFont">TASKFORGE</Typography>
+          <Typography variant="logoFont" sx={{ fontSize: {xs: '1.5rem', sm: '2rem'} }}>TASKFORGE</Typography>
         </Stack>
         <Stack direction="row" alignItems="center">
-          <Typography variant="body1" sx={{ marginRight: "0.5rem" }}>
+          <Typography variant="body1" sx={{ marginRight: "0.5rem", display: {xs: 'none', sm: 'block'}, color: theme.palette.text.secondary }}>
             Don&apos;t have an account?
           </Typography>
           <Button variant="contained" color="primary">
@@ -48,7 +48,8 @@ export default function Login() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "100%",
+          marginTop: "2rem",
         }}
       >
         {/* <Card variant="outlined"> */}
