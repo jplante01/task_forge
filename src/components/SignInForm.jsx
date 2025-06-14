@@ -36,6 +36,7 @@ export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState("There was an error");
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
@@ -79,6 +80,8 @@ export default function SignInForm() {
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
             autoFocus
+            // error={!!emailError}
+            // helperText={emailError ? emailError : " "}
           />
           <TextField
             margin="normal"
@@ -91,6 +94,17 @@ export default function SignInForm() {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            // error={true}
+            helperText={emailError ? emailError : " "}
+            sx={{
+              "& .MuiFormHelperText-root": {
+                minHeight: "20px", // Always reserve space
+                margin: "3px 14px 0",
+                color: "red",
+                fontSize: "1.2rem",
+                margin: "1rem 0rem 0rem 0rem",
+              },
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -111,11 +125,11 @@ export default function SignInForm() {
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </Box>
