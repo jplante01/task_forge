@@ -36,7 +36,7 @@ export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [emailError, setEmailError] = useState("There was an error");
+  const [emailError, setEmailError] = useState("");
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
