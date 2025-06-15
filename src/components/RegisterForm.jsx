@@ -36,18 +36,20 @@ export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
-  const { signIn } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      await signIn(email, password);
+      await register(email, password);
       navigate("/");
-    } catch (error) {
+    } catch (err) {
       console.error("Login error:", error);
+      setError(err.message);
     } finally {
       setLoading(false);
     }
