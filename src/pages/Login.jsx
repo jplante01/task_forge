@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import SignInForm from "../components/SignInForm";
 import { Box, Stack, Typography, Button } from "@mui/material";
 import { TaskForgeLogo } from "../logo/TaskForgeLogo";
 import { useThemeModeContext } from "../contexts/ThemeModeContext";
+import RegisterForm from "../components/RegisterForm";
 
 export default function Login() {
   const { theme } = useThemeModeContext();
+  const [register, setRegister] = useState(false);
+
+  const toggleForm = () => {
+    console.log("register");
+    setRegister(!register);
+  };
 
   return (
     <Stack sx={{ height: "100%" }}>
@@ -36,10 +43,10 @@ export default function Login() {
         </Stack>
         <Stack direction="row" alignItems="center">
           <Typography variant="body1" sx={{ marginRight: "0.5rem", display: {xs: 'none', sm: 'block'}, color: theme.palette.text.secondary }}>
-            Don&apos;t have an account?
+            {register ? "Already have an account?" : "Don't have an account?"}
           </Typography>
-          <Button variant="contained" color="primary">
-            Sign up
+          <Button variant="contained" color="primary" onClick={toggleForm}>
+            {register ? "Sign in" : "Sign up"}
           </Button>
         </Stack>
       </Stack>
@@ -54,7 +61,7 @@ export default function Login() {
       >
         {/* <Card variant="outlined"> */}
         {/* <CardContent> */}
-        <SignInForm />
+          {register ? <RegisterForm /> : <SignInForm />}
         {/* </CardContent> */}
         {/* </Card> */}
       </Box>
