@@ -107,7 +107,7 @@ export default function SignInForm() {
               },
             }}
           />
-          {/* <FormControlLabel
+          <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
@@ -119,7 +119,7 @@ export default function SignInForm() {
             disabled={loading}
           >
             {loading ? "Signing in..." : "Sign In"}
-          </Button> */}
+          </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
