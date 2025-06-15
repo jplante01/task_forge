@@ -37,7 +37,7 @@ export default function SignInForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const { signIn } = useAuth();
+  const { signIn, error } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -47,6 +47,7 @@ export default function SignInForm() {
       await signIn(email, password);
       navigate("/");
     } catch (error) {
+      setEmailError(error.message);
       console.error("Login error:", error);
     } finally {
       setLoading(false);
@@ -106,7 +107,7 @@ export default function SignInForm() {
               },
             }}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
@@ -118,7 +119,7 @@ export default function SignInForm() {
             disabled={loading}
           >
             {loading ? "Signing in..." : "Sign In"}
-          </Button>
+          </Button> */}
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
