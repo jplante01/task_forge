@@ -5,7 +5,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 
 //TODO: should i prefetch the projects when mousing over the project list?
-export default function ProjectList({selectedProjectId, setSelectedProjectId, projects, projectsQueryIsLoading, projectsQueryIsError, user}) {
+export default function ProjectList({selectedProjectId, setSelectedProjectId, projects, projectsQueryIsLoading, projectsQueryIsError, user, handleDrawerToggle}) {
   
 
   if (projectsQueryIsLoading) {
@@ -52,7 +52,8 @@ export default function ProjectList({selectedProjectId, setSelectedProjectId, pr
           <ProjectListItem
             project={project}
             isSelected={selectedProjectId === project.id}
-            onClick={() => setSelectedProjectId(project.id)}
+            setSelectedProjectId={setSelectedProjectId}
+            handleDrawerToggle={handleDrawerToggle}
           />
           <ProjectOptionsMenu
             project={project}

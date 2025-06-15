@@ -14,6 +14,7 @@ export default function ResponsiveDrawer({
   mobileOpen,
   handleDrawerClose,
   handleDrawerTransitionEnd,
+  handleDrawerToggle,
   setSelectedProjectId,
   selectedProjectId,
   projects,
@@ -63,6 +64,7 @@ export default function ResponsiveDrawer({
         projectsQueryIsLoading={projectsQueryIsLoading}
         projectsQueryIsError={projectsQueryIsError}
         user={user}
+        handleDrawerToggle={handleDrawerToggle}
       />
       <Stack
         sx={{ height: "100%" }}

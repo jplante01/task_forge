@@ -3,11 +3,15 @@ import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import PropTypes from "prop-types";
 
-export default function ProjectListItem({ project, onClick, isSelected }) {
+export default function ProjectListItem({ project, setSelectedProjectId, isSelected, handleDrawerToggle }) {
+  const handleClick = () => {
+    setSelectedProjectId(project.id);
+    handleDrawerToggle();
+  };
   return (
     <ListItem
       disableGutters
-      onClick={onClick}
+      onClick={handleClick}
       sx={{
         cursor: "pointer",
         backgroundColor: isSelected ? "action.selected" : "transparent",
