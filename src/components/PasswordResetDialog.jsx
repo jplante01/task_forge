@@ -6,13 +6,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useAuth } from "../contexts/AuthContext";
+
 
 export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
+
+  const { resetPassword } = useAuth();
 
   const handleClose = () => {
     toggleDialog();
   };
-
   return (
     <React.Fragment>
 
@@ -26,8 +29,8 @@ export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
-            console.log(email);
-            handleClose();
+            resetPassword(email);
+            toggleDialog();
           },
         }}
       >
