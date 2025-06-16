@@ -12,7 +12,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeModeProvider } from "./contexts/ThemeModeContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Register from "./pages/Register";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,7 +34,6 @@ export default function App() {
           <QueryClientProvider client={queryClient}>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
               <Route
                 path="/"
                 element={
