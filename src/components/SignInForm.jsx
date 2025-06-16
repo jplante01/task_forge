@@ -32,7 +32,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignInForm() {
+export default function SignInForm({ toggleDialog }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn, error, loading } = useAuth();
@@ -117,7 +117,7 @@ export default function SignInForm() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" onClick={toggleDialog}>
                 Forgot password?
               </Link>
             </Grid>
