@@ -35,23 +35,17 @@ function Copyright(props) {
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [emailError, setEmailError] = useState("");
-  const { signIn, error } = useAuth();
+  const { signIn, error, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
       await signIn(email, password);
       navigate("/");
     } catch (error) {
-      setEmailError(error.message);
       console.error("Login error:", error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   return (
@@ -96,7 +90,7 @@ export default function SignInForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             // error={true}
-            helperText={emailError ? emailError : " "}
+            helperText={error ? error : " "}
             sx={{
               "& .MuiFormHelperText-root": {
                 minHeight: "20px", // Always reserve space
@@ -117,8 +111,9 @@ export default function SignInForm() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             disabled={loading}
+            loading={loading}
           >
-            {loading ? "Signing in..." : "Sign In"}
+            Sign In
           </Button>
           <Grid container>
             <Grid item xs>
