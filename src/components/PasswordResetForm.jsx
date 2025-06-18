@@ -27,7 +27,7 @@ function Copyright(props) {
 }
 
 export default function PasswordResetForm() {
-  const { resetPassword } = useAuth();
+  const { resetPassword: updatePassword } = useAuth();
   const [error, setError] = useState(null);
 
   const handleSubmit = (event) => {
@@ -38,7 +38,7 @@ export default function PasswordResetForm() {
     if (password1 !== password2) {
       setError("Passwords do not match");
     } else {
-      resetPassword(password1);
+      updatePassword(password1);
       setError(null);
     }
   };
@@ -61,7 +61,7 @@ export default function PasswordResetForm() {
             margin="normal"
             required
             fullWidth
-            type="password"
+            type="password-1"
             id="password-1"
             label="Enter your new password"
             name="email"
@@ -72,7 +72,7 @@ export default function PasswordResetForm() {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="password-2"
             label="Re-enter your new password"
             type="password"
             id="password-2"

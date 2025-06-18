@@ -10,7 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
-  const { resetPassword } = useAuth();
+  const { resetPassword: requestPasswordResetEmail } = useAuth();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleClose = () => {
@@ -23,7 +23,7 @@ export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
     const email = formJson.email;
-    resetPassword(email);
+    requestPasswordResetEmail(email);
     setShowConfirmation(true);
     // toggleDialog();
   };
