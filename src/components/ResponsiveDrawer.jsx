@@ -1,4 +1,4 @@
-import { Drawer, Stack, Typography, Box } from "@mui/material";
+import { Drawer, Stack, Typography, Box, Button } from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 // import TaskForgeLogo from "../logo/TaskForgeLogo.svg";
@@ -72,8 +72,8 @@ export default function ResponsiveDrawer({
         alignItems="flex-end"
       >
         <Stack direction="row" alignItems="center" spacing={1}>
-          <Typography variant="body1">Logout</Typography>
-          <Logout
+          {/* <Typography variant="body1">Logout</Typography> */}
+          {/* <Logout
             sx={{
               marginBottom: "1rem",
               color: "grey.500",
@@ -82,7 +82,20 @@ export default function ResponsiveDrawer({
             onClick={() => {
               signOut();
             }}
-          ></Logout>
+          ></Logout> */}
+          <Button
+            variant="outlined"
+            endIcon={<Logout />}
+            onClick={() => {
+              signOut();
+            }}
+            sx={{
+              color: "text.secondary",
+              borderColor: "text.secondary",
+            }}
+          >
+            Logout
+          </Button>
         </Stack>
       </Stack>
     </Stack>
