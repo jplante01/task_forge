@@ -35,7 +35,7 @@ export default function App() {
           <QueryClientProvider client={queryClient}>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/auth/reset-password" element={<ResetPassword />} />
               <Route
                 path="/"
                 element={
