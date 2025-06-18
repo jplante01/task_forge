@@ -49,7 +49,7 @@ export default function ResetPassword() {
                 color: theme.palette.text.secondary,
               }}
             ></Typography>
-            <Button variant="contained" color="primary"></Button>
+            <Button variant="outlined" color="primary"></Button>
           </Stack>
         </Stack>
         <Box

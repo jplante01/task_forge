@@ -52,7 +52,7 @@ export default function Login() {
             <Typography variant="body1" sx={{ marginRight: "0.5rem", display: {xs: 'none', sm: 'block'}, color: theme.palette.text.secondary }}>
               {register ? "Already have an account?" : "Don't have an account?"}
             </Typography>
-            <Button variant="contained" color="primary" onClick={toggleForm}>
+            <Button variant="outlined" color="primary" onClick={toggleForm}>
               {register ? "Sign in" : "Sign up"}
             </Button>
           </Stack>
