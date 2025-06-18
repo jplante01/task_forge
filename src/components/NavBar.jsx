@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { DarkMode } from "@mui/icons-material";
 import PropTypes from "prop-types";
@@ -35,18 +35,34 @@ export default function NavBar({
         >
           <MenuIcon />
         </IconButton>
-        <Stack direction="row" width="100%" alignItems="center" justifyContent="space-between">
+        <Stack
+          direction="row"
+          width="100%"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <Typography variant="h6" noWrap component="div">
-            {!selectedProject ? (
-              ""
-            ) : (
-              selectedProject.name || "No project selected"
-              // projects.find((project) => project.id === selectedProjectId)?.name ||
-              // "No project selected"
-            )}
+            {!selectedProject
+              ? ""
+              : selectedProject.name ||
+                "No project selected"
+                // projects.find((project) => project.id === selectedProjectId)?.name ||
+                // "No project selected"
+            }
           </Typography>
           {/* TODO: insert a theme toggle */}
-          <DarkMode onClick={() => toggleMode()}/>
+          {/* <DarkMode onClick={() => toggleMode()}/> */}
+          <Button
+            variant="outlined"
+            endIcon={<DarkMode />}
+            onClick={() => toggleMode()}
+            sx={{
+              color: "text.secondary",
+              borderColor: "text.secondary",
+            }}
+          >
+            Mode
+          </Button>
         </Stack>
       </Toolbar>
     </AppBar>
