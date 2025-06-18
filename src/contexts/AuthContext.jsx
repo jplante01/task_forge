@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const resetPassword = async (email) => {
+  const requestPasswordResetEmail = async (email) => {
     try {
       setError(null);
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(
@@ -161,7 +161,7 @@ export const AuthProvider = ({ children }) => {
     signInAnonymously,
     signOut,
     register,
-    resetPassword,
+    resetPassword: requestPasswordResetEmail,
     updatePassword,
     refreshSession,
   };
