@@ -35,7 +35,7 @@ function Copyright(props) {
 export default function SignInForm({ toggleDialog }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn, error, loading } = useAuth();
+  const { signIn, signInAnonymously, error, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -46,6 +46,16 @@ export default function SignInForm({ toggleDialog }) {
     } catch (error) {
       console.error("Login error:", error);
     } 
+  };
+
+  const handleAnonLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInAnonymously();
+      navigate("/");
+    } catch (error) {
+      console.error("Anon login error:", error);  
+    }
   };
 
   return (
@@ -115,10 +125,16 @@ export default function SignInForm({ toggleDialog }) {
           >
             Sign In
           </Button>
-          <Grid container>
+
+          <Grid container sx={{ justifyContent: "space-between" }}>
             <Grid item xs>
-              <Link href="#" variant="body2" onClick={toggleDialog}>
+              <Link variant="body2" onClick={toggleDialog}>
                 Forgot password?
+              </Link>
+            </Grid>
+            <Grid item xs>
+              <Link variant="body2" onClick={handleAnonLogin}>
+                Login as Guest
               </Link>
             </Grid>
             {/* <Grid item>
