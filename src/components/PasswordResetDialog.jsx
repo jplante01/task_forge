@@ -10,7 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
-  const { resetPassword: requestPasswordResetEmail } = useAuth();
+  const { requestPasswordResetEmail } = useAuth();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleClose = () => {
