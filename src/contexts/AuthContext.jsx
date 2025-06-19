@@ -108,6 +108,7 @@ export const AuthProvider = ({ children }) => {
 
   const requestPasswordResetEmail = async (email) => {
     try {
+      console.log("Requesting password reset for:", email);
       setError(null);
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(
         email,
