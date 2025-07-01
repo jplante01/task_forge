@@ -82,6 +82,16 @@ export default function PasswordResetForm() {
             type="password"
             id="password-2"
             // autoComplete="current-password"
+            helperText={error ? error : " "}
+            sx={{
+              "& .MuiFormHelperText-root": {
+                minHeight: "20px", // Always reserve space
+                margin: "3px 14px 0",
+                color: "red",
+                fontSize: "1.2rem",
+                margin: "1rem 0rem 0rem 0rem",
+              },
+            }}
           />
 
           <Button
