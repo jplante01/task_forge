@@ -61,10 +61,10 @@ export default function PasswordResetForm() {
             margin="normal"
             required
             fullWidth
-            type="password-1"
+            type="password"
+            name="password-1"
             id="password-1"
             label="Enter your new password"
-            name="email"
             // autoComplete="email"
             autoFocus
           />
