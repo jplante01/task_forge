@@ -32,13 +32,18 @@ export default function PasswordResetForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Form submitted");
     const data = new FormData(event.currentTarget);
     const password1 = data.get("password-1");
     const password2 = data.get("password-2");
+    console.log("Password1", password1);
+    console.log("Password2", password2);
     if (password1 !== password2) {
       setError("Passwords do not match");
     } else {
+      console.log(password1, password2);
       updatePassword(password1);
+      console.log("Password updated");
       setError(null);
     }
   };

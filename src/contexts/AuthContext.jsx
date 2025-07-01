@@ -124,6 +124,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updatePassword = async (newPassword) => {
+    console.log("Update password called from authContext", newPassword);
     try {
       setError(null);
       const { error: updateError } = await supabase.auth.updateUser({
@@ -162,7 +163,7 @@ export const AuthProvider = ({ children }) => {
     signInAnonymously,
     signOut,
     register,
-    resetPassword: requestPasswordResetEmail,
+    requestPasswordResetEmail,
     updatePassword,
     refreshSession,
   };
