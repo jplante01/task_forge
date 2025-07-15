@@ -3,7 +3,11 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "frontend": "vite",
+    "backend": "npx supabase start --exclude imgproxy,edge-runtime,logflare,realtime",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "start": "npm run dev",
+    "stop": "npx supabase stop",
     "build": "vite build",
     "serve": "vite preview"
   },
@@ -32,6 +36,7 @@
     "globals": "^16.0.0",
     "prettier": "3.5.3",
     "prop-types": "^15.8.1",
+    "supabase": "^2.31.4",
     "vite": "latest"
   }
 }
