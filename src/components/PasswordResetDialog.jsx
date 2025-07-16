@@ -25,7 +25,7 @@ export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
     const email = formJson.email;
     requestPasswordResetEmail(email);
     setShowConfirmation(true);
-    // toggleDialog();
+    toggleDialog();
   };
 
   if (!showConfirmation) {
