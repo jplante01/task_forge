@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import PropTypes from "prop-types";
 import {
   Box,
   Button,
   TextField,
   Typography,
   Container,
-  Avatar,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Link,
 } from "@mui/material";
@@ -45,7 +43,7 @@ export default function SignInForm({ toggleDialog }) {
       navigate("/");
     } catch (error) {
       console.error("Login error:", error);
-    } 
+    }
   };
 
   const handleAnonLogin = async (e) => {
@@ -54,7 +52,7 @@ export default function SignInForm({ toggleDialog }) {
       await signInAnonymously();
       navigate("/");
     } catch (error) {
-      console.error("Anon login error:", error);  
+      console.error("Anon login error:", error);
     }
   };
 
@@ -104,7 +102,7 @@ export default function SignInForm({ toggleDialog }) {
             sx={{
               "& .MuiFormHelperText-root": {
                 minHeight: "20px", // Always reserve space
-                margin: "3px 14px 0",
+                // margin: "3px 14px 0",
                 color: "red",
                 fontSize: "1.2rem",
                 margin: "1rem 0rem 0rem 0rem",
@@ -149,3 +147,7 @@ export default function SignInForm({ toggleDialog }) {
     </Container>
   );
 }
+
+SignInForm.propTypes = {
+  toggleDialog: PropTypes.func.isRequired,
+};
