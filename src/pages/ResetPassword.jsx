@@ -2,7 +2,7 @@ import React from "react";
 import { TaskForgeLogo } from "../logo/TaskForgeLogo";
 import { useThemeModeContext } from "../contexts/ThemeModeContext";
 import PasswordResetForm from "../components/PasswordResetForm";
-import { Stack, Typography, Button, Box } from "@mui/material";
+import { Stack, Typography, Button, Box, Link } from "@mui/material";
 
 export default function ResetPassword() {
   const { theme } = useThemeModeContext();
@@ -24,14 +24,16 @@ export default function ResetPassword() {
                 marginRight: "0.5rem",
               }}
             >
-              <TaskForgeLogo
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  color: theme.palette.text.main,
-                  // padding: "0.5rem",
-                }}
-              />
+              <Link href="/">
+                <TaskForgeLogo
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    color: theme.palette.text.main,
+                    // padding: "0.5rem",
+                  }}
+                />
+              </Link>
             </Box>
             <Typography
               variant="logoFont"
