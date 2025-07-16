@@ -7,9 +7,6 @@ import {
   TextField,
   Typography,
   Container,
-  Avatar,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Link,
 } from "@mui/material";
@@ -94,7 +91,7 @@ export default function RegisterForm() {
             sx={{
               "& .MuiFormHelperText-root": {
                 minHeight: "20px", // Always reserve space
-                margin: "3px 14px 0",
+                // margin: "3px 14px 0",
                 color: "red",
                 fontSize: "1.2rem",
                 margin: "1rem 0rem 0rem 0rem",

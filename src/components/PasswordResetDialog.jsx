@@ -8,8 +8,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAuth } from "../contexts/AuthContext";
+import PropTypes from "prop-types";
 
 export default function PasswordResetDialog({ dialogOpen, toggleDialog }) {
+  PasswordResetDialog.propTypes = {
+    dialogOpen: PropTypes.bool.isRequired,
+    toggleDialog: PropTypes.func.isRequired
+  };
+
   const { requestPasswordResetEmail } = useAuth();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
