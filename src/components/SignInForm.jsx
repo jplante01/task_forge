@@ -11,24 +11,7 @@ import {
   Grid,
   Link,
 } from "@mui/material";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        jplante.dev
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Copyright from "./Copyright";
 
 export default function SignInForm({ toggleDialog }) {
   const [email, setEmail] = useState("");
