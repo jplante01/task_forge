@@ -7,7 +7,7 @@ const drawerWidth = 340;
 import { getProjectsByUser } from "../hooks/queries/projects";
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-
+import AnonUserDialog from "../components/AnonUserDialog";
 //TODO: eliminate layout shift on first render of TasksMain
 // TODO: pass loading to the projectslist
 export default function TasksMain() {
@@ -15,8 +15,16 @@ export default function TasksMain() {
   const [isClosing, setIsClosing] = React.useState(false);
   const [selectedProjectId, setSelectedProjectId] = React.useState(null);
   const [selectedProject, setSelectedProject] = React.useState(null);
+  const [showAnonDialog, setShowAnonDialog] = React.useState(false);
 
   const { user, signOut } = useAuth();
+
+  useEffect(() => {
+    // Check if user just signed in anonymously
+    if (user?.is_anonymous === true) {
+      setShowAnonDialog(true);
+    }
+  }, [user]);
 
   const {
     data: projects,
@@ -67,6 +75,10 @@ export default function TasksMain() {
     }
   };
 
+  const handleAnonDialogClose = () => {
+    setShowAnonDialog(false);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -102,6 +114,10 @@ export default function TasksMain() {
         projectsQueryIsError={projectsQueryIsError}
         user={user}
         signOut={signOut}
+      />
+      <AnonUserDialog
+        showAnonDialog={showAnonDialog}
+        handleAnonDialogClose={handleAnonDialogClose}
       />
     </Box>
   );
