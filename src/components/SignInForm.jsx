@@ -109,12 +109,20 @@ export default function SignInForm({ toggleDialog }) {
 
           <Grid container sx={{ justifyContent: "space-between" }}>
             <Grid item xs>
-              <Link variant="body2" onClick={toggleDialog}>
+              <Link
+                variant="body2"
+                sx={{ cursor: "pointer" }}
+                onClick={toggleDialog}
+              >
                 Forgot password?
               </Link>
             </Grid>
             <Grid item xs>
-              <Link variant="body2" onClick={handleAnonLogin}>
+              <Link
+                variant="body2"
+                sx={{ cursor: "pointer" }}
+                onClick={handleAnonLogin}
+              >
                 Login as Guest
               </Link>
             </Grid>
