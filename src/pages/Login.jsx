@@ -21,19 +21,18 @@ export default function Login() {
 
   return (
     <React.Fragment>
-
       <Stack sx={{ height: "100%" }}>
         <Stack
           direction="row"
           alignItems="center"
-          sx={{ padding: {xs: "0.5rem", sm: "1.5rem"}, marginBottom: "2rem" }}
+          sx={{ padding: { xs: "0.5rem", sm: "1.5rem" }, marginBottom: "2rem" }}
           justifyContent="space-between"
         >
           <Stack direction="row" alignItems="center">
             <Box
               sx={{
-                width: {xs: "60px", sm: "80px"},
-                height: {xs: "60px", sm: "80px"},
+                width: { xs: "60px", sm: "80px" },
+                height: { xs: "60px", sm: "80px" },
                 marginRight: "0.5rem",
               }}
             >
@@ -41,15 +40,27 @@ export default function Login() {
                 sx={{
                   width: "100%",
                   height: "100%",
-                  color: theme.palette.text.main,
+                  color: theme.palette.text.primary,
                   // padding: "0.5rem",
                 }}
               />
             </Box>
-            <Typography variant="logoFont" sx={{ fontSize: {xs: '1.5rem', sm: '2rem'} }}>TASKFORGE</Typography>
+            <Typography
+              variant="logoFont"
+              sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+            >
+              TASKFORGE
+            </Typography>
           </Stack>
           <Stack direction="row" alignItems="center">
-            <Typography variant="body1" sx={{ marginRight: "0.5rem", display: {xs: 'none', sm: 'block'}, color: theme.palette.text.secondary }}>
+            <Typography
+              variant="body1"
+              sx={{
+                marginRight: "0.5rem",
+                display: { xs: "none", sm: "block" },
+                color: theme.palette.text.secondary,
+              }}
+            >
               {register ? "Already have an account?" : "Don't have an account?"}
             </Typography>
             <Button variant="outlined" color="primary" onClick={toggleForm}>
@@ -68,12 +79,19 @@ export default function Login() {
         >
           {/* <Card variant="outlined"> */}
           {/* <CardContent> */}
-            {register ? <RegisterForm toggleDialog={toggleDialog}/> : <SignInForm toggleDialog={toggleDialog}/>}
+          {register ? (
+            <RegisterForm toggleDialog={toggleDialog} />
+          ) : (
+            <SignInForm toggleDialog={toggleDialog} />
+          )}
           {/* </CardContent> */}
           {/* </Card> */}
         </Box>
       </Stack>
-      <PasswordResetDialog dialogOpen={dialogOpen} toggleDialog={toggleDialog} />
+      <PasswordResetDialog
+        dialogOpen={dialogOpen}
+        toggleDialog={toggleDialog}
+      />
     </React.Fragment>
   );
 }
