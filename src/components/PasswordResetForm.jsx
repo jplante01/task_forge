@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -65,7 +64,7 @@ export default function PasswordResetForm() {
             sx={{
               "& .MuiFormHelperText-root": {
                 minHeight: "20px", // Always reserve space
-                margin: "3px 14px 0",
+                // margin: "3px 14px 0",
                 color: "red",
                 fontSize: "1.2rem",
                 margin: "1rem 0rem 0rem 0rem",
