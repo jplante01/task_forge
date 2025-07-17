@@ -10,7 +10,7 @@ export default function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="jplante.dev">
+      <Link color="inherit" href="https://jplante.dev">
         jplante.dev
       </Link>{" "}
       {new Date().getFullYear()}
