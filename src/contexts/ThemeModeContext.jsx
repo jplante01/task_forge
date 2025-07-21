@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import "@fontsource/permanent-marker";
+import "@fontsource/ibm-plex-mono";
 import { red, grey } from "@mui/material/colors";
 
 const ThemeModeContext = createContext();
@@ -26,7 +27,7 @@ export function ThemeModeProvider({ children }) {
   const theme = createTheme({
     cssVariables: true,
     typography: {
-      fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: 'IBM Plex Mono, Inter, Roboto, Helvetica, Arial, sans-serif',
       logoFont: {
         fontFamily: "Permanent Marker",
         fontSize: "2rem",
