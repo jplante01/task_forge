@@ -28,7 +28,7 @@ const getThemeConfig = (mode) => ({
     ...(mode === "light"
       ? {
           // Light mode colors
-          primary: { main: "#1976d2" },
+          primary: { main: "#00A376" },
           secondary: { main: "#dc004e" },
           background: {
             default: "#f5f5f5",
@@ -37,7 +37,7 @@ const getThemeConfig = (mode) => ({
         }
       : {
           // Dark mode colors
-          primary: { main: "#90caf9" },
+          primary: { main: "#49cca7" },
           secondary: { main: "#f48fb1" },
           background: {
             default: "#121212",
