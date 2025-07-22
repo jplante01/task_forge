@@ -119,8 +119,7 @@ export default function TaskList({ projectId }) {
       variant="subtitle1"
       sx={{ color: "grey.800", fontWeight: "bold" }}
     >
-      No tasks found
-    </Typography>
+Create a project to begin adding tasks    </Typography>
   );
 }
 
