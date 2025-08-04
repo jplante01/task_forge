@@ -30,6 +30,7 @@
   "devDependencies": {
     "@eslint/js": "^9.24.0",
     "@vitejs/plugin-react": "latest",
+    "concurrently": "^9.2.0",
     "eslint": "^9.24.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -37,7 +38,7 @@
     "globals": "^16.0.0",
     "prettier": "3.5.3",
     "prop-types": "^15.8.1",
-    "supabase": "^2.31.4",
+    "supabase": "^2.33.9",
     "vite": "latest"
   }
 }
