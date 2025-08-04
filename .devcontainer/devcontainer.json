@@ -1,0 +1,21 @@
+{
+  "name": "React + Supabase Dev",
+  "image": "node:18",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "npm install && npm install supabase --save-dev",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-json",
+        "ms-mssql.sql-database-projects-vscode",
+        "ms-vscode.vscode-json"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 54321, 54323, 54324],
+  "remoteUser": "node"
+}
