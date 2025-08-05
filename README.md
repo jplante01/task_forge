@@ -1,79 +1,147 @@
-## Fontsource
-Font installation is handled with [Fontsource](https://fontsource.org/)
+# Modern Todo App
 
-1) Install the font from fontsource
-2) Import the font into `theme.js`
-3) Apply fonts with `fontfamily="fontName"` attribute, or the sx prop: `sx={{ fontFamily: 'fontName'}}`
-4) OR create a custom variant inside `theme.js`:
+A slick todo list application built with modern web technologies, demonstrating full-stack development best practices and contemporary UI/UX design patterns.
 
-```js
-const theme = createTheme({
-  cssVariables: true,
-  typography: {
-      logoFont: { // Add 'variant=logoFont' to a component
-      fontFamily: "Permanent Marker",
-    },
-  },
-  palette: {
-    primary: {
-      main: '#556cd6',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    grey: {
-      ...grey,
-    },
-    error: {
-      main: red.A400,
-    },
-  },
-});
+## ✨ Features
+
+- **Responsive Design** - Seamless experience across desktop, tablet, and mobile devices
+- **User Authentication** - Secure login and registration with Supabase Auth
+- **Theme Support** - Light and dark mode with Material-UI theming
+- **Real-time Sync** - Efficient data synchronization using React Query
+- **Modern UI** - Clean, intuitive interface built with Material-UI components
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, Material-UI, React Query
+- **Backend**: Supabase (Database, Authentication, Real-time subscriptions)
+- **State Management**: React Query for server state, React hooks for local state
+- **Styling**: Material-UI theme system with custom theming support
+
+## 🚀 Live Demo
+
+[View Live Application](taskforge.jplante.dev)
+
+# Getting Started
+
+You are free to run the app yourself, or even deploy it! The instructions below should get you started
+
+> [!NOTE]
+> You can run this app in two ways: using a dev container (easier), or in your local environment.
+
+## Option 1: Dev Container
+
+The easiest way to get started is using the provided dev container, which includes all dependencies pre-configured.
+
+### Prerequisites
+- Docker
+- A way to run Dev Containers, the directions below are for VSCode
+
+### Setup
+1. **Clone the repository**
+   ```bash
+   git clone git@github.com:jplante01/task_forge.git
+   cd task_forge
+   ```
+
+2. **Open in VS Code**
+   ```bash
+   code .
+   ```
+
+3. **Reopen in Container**
+   - VS Code will prompt you to "Reopen in Container"
+   - Or use Command Palette: `Dev Containers: Reopen in Container`
+
+   > [!NOTE]
+> The first time you start the container it will download the Supabse docker images, which can take a long time(~15 minutes or more). Subsequent starts will be faster
+
+4. **Start the app**
+   Once the container is ready:
+   ```bash
+   npm run dev
+   // starts the vite server and the supabase local dev environment in one command
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:5173` (or the port shown in terminal)
+
+## Option 2: Local Environment
+
+### Prerequisites
+- Node.js 18+ and npm
+- Docker
+- [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started)
+
+### Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone git@github.com:jplante01/task_forge.git
+   cd task_forge
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the app**
+   Once the container is ready:
+   ```bash
+   npm run dev
+   // starts the vite server and the supabase local dev environment in one command
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:5173` (or the port shown in terminal)
+
+## Next Steps
+
+Once you have the app running (either method), you can:
+
+## Production Build
+
+### For Local Testing
+```bash
+npm run build
+npm run preview
 ```
 
-# Data Model
-*To view diagram in vscode, open a preview of this markdown file*
-```mermaid
-erDiagram
-    USERS ||--o{ PROJECTS : creates
-    PROJECTS ||--o{ TASKS : contains
-    
-    USERS {
-        uuid id PK
-        string email
-        string password
-        string name
-        timestamp created_at
-        timestamp updated_at
-    }
-    
-    PROJECTS {
-        uuid id PK
-        string name
-        string description
-        uuid user_id FK
-        timestamp created_at
-        timestamp updated_at
-    }
-    
-    TASKS {
-        uuid id PK
-        string title
-        string description
-        boolean completed
-        boolean starred
-        uuid project_id FK
-        timestamp created_at
-        timestamp updated_at
-    }
-```
+### For Deployment
+1. **Set up your production environment**
+   ```bash
+   cp .env.production.example .env.production
+   ```
+   
+2. **Add your production Supabase credentials** to `.env.production`:
+   - Get your project URL and anon key from [Supabase Dashboard](https://supabase.com/dashboard)
+   - Update the values in `.env.production`
 
-# Running locally
-Run the local development backend with `supabase start`
-Create `./env.local` and paste in the Project URL and anon key provided by `supabase start`
+3. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-*file format -- .env.local*
-```
-VITE_SUPABASE_URL=http://localhost:54321 # Use correct url if different
-VITE_SUPABASE_ANON_KEY=eyJh...  # Use the actual key shown when Supabase starts
-```
+4. **Deploy the `dist/` folder** to your hosting platform
+
+## Available Scripts
+
+- `npm run dev` - Starts the local full stack
+- `npm run frontend` - Start the application vite local dev server 
+- `npm run backend` - Start the required Supabase services locally
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm run stop` - Stop local Supabase services
+- `npm run preview` - Serve production build locally
+
+## Environment Configuration
+
+- **Local development**: Uses `.env.development` (already configured)
+- **Production**: Create `.env.production` from the example template
+- **Local overrides**: Create `.env.development.local` if needed (gitignored)
+
+## Troubleshooting
+
+- **Supabase connection issues**: Make sure supabase is running with `npm run backend`
+- **Port conflicts**: Check if port 54321 is available for Supabase
+- **Build errors**: Clear `node_modules` and reinstall dependencies
