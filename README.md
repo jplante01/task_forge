@@ -52,14 +52,14 @@ The easiest way to get started is using the provided dev container, which includ
    - VS Code will prompt you to "Reopen in Container"
    - Or use Command Palette: `Dev Containers: Reopen in Container`
 
-   > [!NOTE]
+> [!NOTE]
 > The first time you start the container it will download the Supabse docker images, which can take a long time(~15 minutes or more). Subsequent starts will be faster
 
 4. **Start the app**
    Once the container is ready:
    ```bash
    npm run dev
-   // starts the vite server and the supabase local dev environment in one command
+   # starts the vite server and the supabase local dev environment in one command
    ```
 
 5. **Open your browser**
