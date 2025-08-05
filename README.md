@@ -1,4 +1,4 @@
-# Modern Todo App
+# Task Forge
 
 A slick todo list application built with modern web technologies, demonstrating full-stack development best practices and contemporary UI/UX design patterns.
 
