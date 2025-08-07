@@ -19,7 +19,7 @@ A slick todo list application built with modern web technologies, demonstrating 
 
 ## 🚀 Live Demo
 
-[View Live Application](taskforge.jplante.dev)
+[View Live Application](https://taskforge.jplante.dev)
 
 # Getting Started
 
