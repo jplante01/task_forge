@@ -2,7 +2,7 @@ import React from "react";
 import { TaskForgeLogo } from "../logo/TaskForgeLogo";
 import { useThemeModeContext } from "../contexts/ThemeModeContext";
 import PasswordResetForm from "../components/PasswordResetForm";
-import { Stack, Typography, Button, Box, Link } from "@mui/material";
+import { Stack, Typography, Box, Link } from "@mui/material";
 
 export default function ResetPassword() {
   const { theme } = useThemeModeContext();

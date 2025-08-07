@@ -5,14 +5,15 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import TasksMain from "./pages/TasksMain";
-import Login from "./pages/Login";
-import { AuthProvider } from "./contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeModeProvider } from "./contexts/ThemeModeContext";
+import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ResetPassword from "./pages/ResetPassword";
+import LoadingPage from "./pages/LoadingPage"
+const TasksMain = React.lazy(() => import("./pages/TasksMain"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,7 +41,9 @@ export default function App() {
                 path="/"
                 element={
                   <ProtectedRoute>
-                    <TasksMain />
+                    <React.Suspense fallback={<LoadingPage />}>
+                      <TasksMain />
+                    </React.Suspense>
                   </ProtectedRoute>
                 }
               />

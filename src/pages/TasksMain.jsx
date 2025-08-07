@@ -8,8 +8,7 @@ import { getProjectsByUser } from "../hooks/queries/projects";
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import AnonUserDialog from "../components/AnonUserDialog";
-//TODO: eliminate layout shift on first render of TasksMain
-// TODO: pass loading to the projectslist
+
 export default function TasksMain() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
