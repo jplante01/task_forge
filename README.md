@@ -95,7 +95,8 @@ The easiest way to get started is using the provided dev container, which includ
 4. **Open your browser**
    Navigate to `http://localhost:5173` (or the port shown in terminal)
 
-## Next Steps
+
+# Production/Deployment
 
 Once you have the app running (either method), you can:
 
@@ -108,6 +109,8 @@ npm run preview
 ```
 
 ### For Deployment
+
+**Back-end**
 1. **Set up your production environment**
    ```bash
    cp .env.production.example .env.production
@@ -116,13 +119,52 @@ npm run preview
 2. **Add your production Supabase credentials** to `.env.production`:
    - Get your project URL and anon key from [Supabase Dashboard](https://supabase.com/dashboard)
    - Update the values in `.env.production`
+   - Link and push your supabase project with supabase CLI(Read the Supabase docs for details)
 
+**Front-end**
 3. **Build for production**
    ```bash
    npm run build
    ```
 
 4. **Deploy the `dist/` folder** to your hosting platform
+
+
+## 🚀 Automated Front-End Deployment with AWS CLI
+
+This project includes automated deployment of the front-end application to AWS S3 + CloudFront.
+
+### Prerequisites
+- AWS CLI installed and configured with appropriate permissions
+- S3 bucket with static website hosting enabled
+- CloudFront distribution pointing to your S3 bucket (optional but recommended)
+
+### Setup
+1. Copy the deployment environment template:
+   ```bash
+   cp deployment/.env.deploy.example deployment/.env.deploy
+   ```
+2. Fill in your AWS resource details in `deployment/.env.deploy`:
+   - `S3_BUCKET_NAME`: Your S3 bucket name
+   - `AWS_REGION`: The AWS region where your S3 bucket is located
+   - `CLOUDFRONT_DISTRIBUTION_ID`: Found in AWS Console > CloudFront > Distributions
+   - `CLOUDFRONT_URL`: Your CloudFront distribution URL or custom domain
+
+### Deploy
+```bash
+# Run the script from the `deployment` folder
+cd deployment
+./deploy.sh
+```
+
+The script will:
+- Prompt for a deployment comment
+- Build the application
+- Upload files to S3 with optimized caching headers
+- Invalidate CloudFront cache (if configured)
+- Log the deployment with version and git commit information
+
+Deployment logs are stored in `deployment/deployment.log` for audit purposes.
 
 ## Available Scripts
 
