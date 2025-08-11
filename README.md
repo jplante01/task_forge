@@ -110,7 +110,7 @@ npm run preview
 
 ### For Deployment
 
-**Back-end**
+#### Backend
 1. **Set up your production environment**
    ```bash
    cp .env.production.example .env.production
@@ -121,7 +121,7 @@ npm run preview
    - Update the values in `.env.production`
    - Link and push your supabase project with supabase CLI(Read the Supabase docs for details)
 
-**Front-end**
+#### Frontend
 3. **Build for production**
    ```bash
    npm run build
