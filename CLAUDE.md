@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Task Forge is a full-stack todo list application built with React + Vite on the frontend and Supabase for backend services (database, authentication, real-time sync).
 
+This project is not enterprise-grade code, it is intended to be a toy app for the purposes of demonstrating my abilities as a web-developer. It is okay for the solutions to be simple, but please point out if they are clearly incorrect or utilizing bad practices or anti-patterns. 
+
 ## Development Commands
 
 ### Starting the Application
