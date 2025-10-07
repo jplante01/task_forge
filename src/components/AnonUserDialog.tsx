@@ -31,9 +31,6 @@ export default function AnonUserDialog({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleAnonDialogClose}>Continue as Guest</Button>
-        {/* <Button onClick="" variant="contained">
-          Create Account
-        </Button> */}
       </DialogActions>
     </Dialog>
   );

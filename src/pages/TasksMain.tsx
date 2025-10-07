@@ -22,7 +22,6 @@ export default function TasksMain() {
   const { user, signOut } = useAuth();
 
   useEffect(() => {
-    // Check if user just signed in anonymously
     if (user?.is_anonymous === true) {
       setShowAnonDialog(true);
     }
@@ -45,12 +44,10 @@ export default function TasksMain() {
       if (foundProject) {
         setSelectedProject(foundProject);
       } else {
-        // If selected project is not found, select the first project if available
         if (projects.length > 0) {
           setSelectedProjectId(projects[0].id);
           setSelectedProject(projects[0]);
         } else {
-          // If no projects are available, clear the selection
           setSelectedProjectId(null);
           setSelectedProject(null);
         }

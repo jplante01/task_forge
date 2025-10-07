@@ -54,8 +54,6 @@ export default function RegisterForm() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             autoComplete="email"
             autoFocus
-            // error={!!emailError}
-            // helperText={emailError ? emailError : " "}
           />
           <TextField
             margin="normal"
@@ -68,22 +66,16 @@ export default function RegisterForm() {
             autoComplete="current-password"
             value={password}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-            // error={true}
             helperText={error ? error : " "}
             sx={{
               "& .MuiFormHelperText-root": {
-                minHeight: "20px", // Always reserve space
-                // margin: "3px 14px 0",
+                minHeight: "20px",
                 color: "red",
                 fontSize: "1.2rem",
                 margin: "1rem 0rem 0rem 0rem",
               },
             }}
           />
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
           <Button
             type="submit"
             fullWidth

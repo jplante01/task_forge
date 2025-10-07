@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Get initial session
     const fetchSession = async () => {
       try {
         const { data, error: sessionError } = await supabase.auth.getSession();
@@ -48,7 +47,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     fetchSession();
 
-    // Set up auth state listener
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
@@ -62,7 +60,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(false);
     });
 
-    // Clean up subscription when component unmounts
     return () => {
       subscription.unsubscribe();
     };

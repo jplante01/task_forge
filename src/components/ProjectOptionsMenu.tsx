@@ -51,7 +51,6 @@ function ProjectOptionsMenu({ project, user }: ProjectOptionsMenuProps) {
     handleModalClose();
   };
 
-  // Modal style
   const modalStyle = {
     position: "absolute",
     top: "50%",

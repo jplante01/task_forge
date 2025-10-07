@@ -48,7 +48,6 @@ export default function PasswordResetForm() {
             name="password-1"
             id="password-1"
             label="Enter your new password"
-            // autoComplete="email"
             autoFocus
           />
           <TextField
@@ -59,12 +58,10 @@ export default function PasswordResetForm() {
             label="Re-enter your new password"
             type="password"
             id="password-2"
-            // autoComplete="current-password"
             helperText={error ? error : " "}
             sx={{
               "& .MuiFormHelperText-root": {
-                minHeight: "20px", // Always reserve space
-                // margin: "3px 14px 0",
+                minHeight: "20px",
                 color: "red",
                 fontSize: "1.2rem",
                 margin: "1rem 0rem 0rem 0rem",

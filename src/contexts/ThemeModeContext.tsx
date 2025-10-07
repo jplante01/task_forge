@@ -26,7 +26,6 @@ const ThemeModeContext = createContext<ThemeModeContextValue | undefined>(
   undefined
 );
 
-// Theme configuration separated for better maintainability
 const getThemeConfig = (mode: ThemeMode) => ({
   cssVariables: true,
   typography: {
@@ -41,7 +40,6 @@ const getThemeConfig = (mode: ThemeMode) => ({
     mode,
     ...(mode === "light"
       ? {
-          // Light mode colors
           primary: { main: "#00A376" },
           secondary: { main: "#dc004e" },
           background: {
@@ -50,7 +48,6 @@ const getThemeConfig = (mode: ThemeMode) => ({
           },
         }
       : {
-          // Dark mode colors
           primary: { main: "#49cca7" },
           secondary: { main: "#f48fb1" },
           background: {
@@ -93,7 +90,6 @@ export function ThemeModeProvider({ children }: ThemeModeProviderProps) {
     }
   };
 
-  // Memoize theme creation to prevent unnecessary re-renders
   const theme = useMemo(() => createTheme(getThemeConfig(mode)), [mode]);
 
   const contextValue = useMemo(
@@ -128,7 +124,6 @@ export function useThemeModeContext(): ThemeModeContextValue {
   return context;
 }
 
-// Optional: Export individual hooks for specific needs
 export function useThemeMode() {
   const { mode, toggleMode, setThemeMode, isDark, isLight } =
     useThemeModeContext();
