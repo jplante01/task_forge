@@ -17,6 +17,10 @@ A slick todo list application built with modern web technologies, demonstrating 
 - **State Management**: React Query for server state, React hooks for local state
 - **Styling**: Material-UI theme system with custom theming support
 
+## Development Notes
+  This project was built with assistance from Claude Code for TypeScript 
+  implementation. I'm transparent about AI collaboration as a modern development practice.
+
 ## 🚀 Live Demo
 
 [View Live Application](https://taskforge.jplante.dev)
