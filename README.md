@@ -4,6 +4,7 @@ A slick todo list application built with modern web technologies, demonstrating 
 
 ## ✨ Features
 
+- **TypeScript** - Full type safety and enhanced developer experience
 - **Responsive Design** - Seamless experience across desktop, tablet, and mobile devices
 - **User Authentication** - Secure login and registration with Supabase Auth
 - **Theme Support** - Light and dark mode with Material-UI theming
@@ -12,14 +13,11 @@ A slick todo list application built with modern web technologies, demonstrating 
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18, Material-UI, React Query
+- **Frontend**: React 18, TypeScript, Material-UI, React Query
 - **Backend**: Supabase (Database, Authentication, Real-time subscriptions)
 - **State Management**: React Query for server state, React hooks for local state
 - **Styling**: Material-UI theme system with custom theming support
-
-## Development Notes
-  This project was built with assistance from Claude Code for TypeScript 
-  implementation. I'm transparent about AI collaboration as a modern development practice.
+- **Build Tools**: Vite, TypeScript compiler, ESLint
 
 ## 🚀 Live Demo
 
@@ -37,17 +35,21 @@ You are free to run the app yourself, or even deploy it! The instructions below 
 The easiest way to get started is using the provided dev container, which includes all dependencies pre-configured.
 
 ### Prerequisites
+
 - Docker
 - A way to run Dev Containers, the directions below are for VSCode
 
 ### Setup
+
 1. **Clone the repository**
+
    ```bash
    git clone git@github.com:jplante01/task_forge.git
    cd task_forge
    ```
 
 2. **Open in VS Code**
+
    ```bash
    code .
    ```
@@ -61,6 +63,7 @@ The easiest way to get started is using the provided dev container, which includ
 
 4. **Start the app**
    Once the container is ready:
+
    ```bash
    npm run dev
    # starts the vite server and the supabase local dev environment in one command
@@ -72,6 +75,7 @@ The easiest way to get started is using the provided dev container, which includ
 ## Option 2: Local Environment
 
 ### Prerequisites
+
 - Node.js 18+ and npm
 - Docker
 - [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started)
@@ -79,18 +83,21 @@ The easiest way to get started is using the provided dev container, which includ
 ### Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone git@github.com:jplante01/task_forge.git
    cd task_forge
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start the app**
    Once the container is ready:
+
    ```bash
    npm run dev
    // starts the vite server and the supabase local dev environment in one command
@@ -99,7 +106,6 @@ The easiest way to get started is using the provided dev container, which includ
 4. **Open your browser**
    Navigate to `http://localhost:5173` (or the port shown in terminal)
 
-
 # Production/Deployment
 
 Once you have the app running (either method), you can:
@@ -107,6 +113,7 @@ Once you have the app running (either method), you can:
 ## Production Build
 
 ### For Local Testing
+
 ```bash
 npm run build
 npm run preview
@@ -115,35 +122,38 @@ npm run preview
 ### For Deployment
 
 #### Backend
+
 1. **Set up your production environment**
    ```bash
    cp .env.production.example .env.production
    ```
-   
 2. **Add your production Supabase credentials** to `.env.production`:
    - Get your project URL and anon key from [Supabase Dashboard](https://supabase.com/dashboard)
    - Update the values in `.env.production`
    - Link and push your supabase project with supabase CLI(Read the Supabase docs for details)
 
 #### Frontend
+
 3. **Build for production**
+
    ```bash
    npm run build
    ```
 
 4. **Deploy the `dist/` folder** to your hosting platform
 
-
 ## 🚀 Automated Front-End Deployment with AWS CLI
 
 This project includes automated deployment of the front-end application to AWS S3 + CloudFront.
 
 ### Prerequisites
+
 - AWS CLI installed and configured with appropriate permissions
 - S3 bucket with static website hosting enabled
 - CloudFront distribution pointing to your S3 bucket (optional but recommended)
 
 ### Setup
+
 1. Copy the deployment environment template:
    ```bash
    cp deployment/.env.deploy.example deployment/.env.deploy
@@ -155,6 +165,7 @@ This project includes automated deployment of the front-end application to AWS S
    - `CLOUDFRONT_URL`: Your CloudFront distribution URL or custom domain
 
 ### Deploy
+
 ```bash
 # Run the script from the `deployment` folder
 cd deployment
@@ -162,6 +173,7 @@ cd deployment
 ```
 
 The script will:
+
 - Prompt for a deployment comment
 - Build the application
 - Upload files to S3 with optimized caching headers
@@ -173,7 +185,7 @@ Deployment logs are stored in `deployment/deployment.log` for audit purposes.
 ## Available Scripts
 
 - `npm run dev` - Starts the local full stack
-- `npm run frontend` - Start the application vite local dev server 
+- `npm run frontend` - Start the application vite local dev server
 - `npm run backend` - Start the required Supabase services locally
 - `npm run build` - Build for production
 - `npm run lint` - Run ESLint
