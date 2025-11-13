@@ -1,6 +1,7 @@
 import tasksApi from "../../api/tasks";
 import { useQuery, useMutation, useQueryClient, UseQueryOptions } from "@tanstack/react-query";
 import type { Database } from "../../types/supabase";
+import { useNotification } from "../../contexts/NotificationContext";
 
 type Task = Database["public"]["Tables"]["tasks"]["Row"];
 type TaskInsert = Database["public"]["Tables"]["tasks"]["Insert"];
@@ -34,6 +35,7 @@ export const useGetTasksByProjectId = (
 
 export const useDeleteTaskById = () => {
   const queryClient = useQueryClient();
+  const { showError } = useNotification();
 
   return useMutation({
     mutationFn: (data: DeleteTaskData) => {
@@ -57,6 +59,7 @@ export const useDeleteTaskById = () => {
       if (context?.previousTasks && context.projectId) {
         queryClient.setQueryData(["tasks", context.projectId], context.previousTasks);
       }
+      showError("Failed to delete task. Please try again.");
     },
     onSettled: (_data, _error, variables) => {
       queryClient.invalidateQueries({ queryKey: ["tasks", variables.projectId] });
@@ -66,6 +69,7 @@ export const useDeleteTaskById = () => {
 
 export const useCreateTask = () => {
   const queryClient = useQueryClient();
+  const { showError } = useNotification();
 
   return useMutation({
     mutationFn: (newTask: TaskInsert) => {
@@ -86,6 +90,7 @@ export const useCreateTask = () => {
       if (context?.previousTasks && context.projectId) {
         queryClient.setQueryData(["tasks", context.projectId], context.previousTasks);
       }
+      showError("Failed to create task. Please try again.");
     },
     onSettled: (data) => {
       if (data?.project_id) {
@@ -97,6 +102,7 @@ export const useCreateTask = () => {
 
 export const useUpdateTaskById = () => {
   const queryClient = useQueryClient();
+  const { showError } = useNotification();
 
   return useMutation({
     mutationFn: (data: UpdateTaskData) => {
@@ -123,6 +129,7 @@ export const useUpdateTaskById = () => {
       if (context?.previousTasks && context.projectId) {
         queryClient.setQueryData(["tasks", context.projectId], context.previousTasks);
       }
+      showError("Failed to update task. Please try again.");
     },
     onSettled: (data) => {
       if (data?.project_id) {

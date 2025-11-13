@@ -5,38 +5,6 @@ import { TaskForgeLogo } from "../logo/TaskForgeLogo";
 import { useThemeModeContext } from "../contexts/ThemeModeContext";
 import RegisterForm from "../components/RegisterForm";
 import PasswordResetDialog from "../components/PasswordResetDialog";
-import { useNotification } from "../contexts/NotificationContext";
-
-// TODO: REMOVE BEFORE COMMIT - Test notification buttons
-function TestNotificationButtons() {
-  const { showSuccess, showError, showInfo, showWarning } = useNotification();
-
-  return (
-    <Stack
-      direction="row"
-      spacing={1}
-      sx={{
-        position: "fixed",
-        bottom: 16,
-        right: 16,
-        zIndex: 9999,
-      }}
-    >
-      <Button size="small" variant="contained" color="success" onClick={() => showSuccess("Task created successfully!")}>
-        Success
-      </Button>
-      <Button size="small" variant="contained" color="error" onClick={() => showError("Failed to delete task. Please try again.")}>
-        Error
-      </Button>
-      <Button size="small" variant="contained" color="info" onClick={() => showInfo("Loading your data...")}>
-        Info
-      </Button>
-      <Button size="small" variant="contained" color="warning" onClick={() => showWarning("Your session will expire soon")}>
-        Warning
-      </Button>
-    </Stack>
-  );
-}
 
 export default function Login() {
   const { theme } = useThemeModeContext();
@@ -120,7 +88,6 @@ export default function Login() {
         dialogOpen={dialogOpen}
         toggleDialog={toggleDialog}
       />
-      <TestNotificationButtons /> {/* TODO: REMOVE BEFORE COMMIT */}
     </>
   );
 }

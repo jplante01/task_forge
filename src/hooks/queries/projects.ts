@@ -2,6 +2,7 @@ import projectsApi from "../../api/projects";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { User } from "@supabase/supabase-js";
 import type { Database } from "../../types/supabase";
+import { useNotification } from "../../contexts/NotificationContext";
 
 type Project = Database["public"]["Tables"]["projects"]["Row"];
 type ProjectInsert = Database["public"]["Tables"]["projects"]["Insert"];
@@ -42,6 +43,7 @@ export const getProjectById = (projectId: string | null) => {
 
 export const useDeleteProjectById = () => {
   const queryClient = useQueryClient();
+  const { showError } = useNotification();
 
   return useMutation({
     mutationFn: (data: DeleteProjectData) => {
@@ -71,6 +73,7 @@ export const useDeleteProjectById = () => {
           context.previousProjects
         );
       }
+      showError("Failed to delete project. Please try again.");
     },
     onSettled: (_data, _error, variables) => {
       queryClient.invalidateQueries({ queryKey: ["projects", variables.userId] });
@@ -80,6 +83,7 @@ export const useDeleteProjectById = () => {
 
 export const useCreateProject = () => {
   const queryClient = useQueryClient();
+  const { showError } = useNotification();
 
   return useMutation({
     mutationFn: (data: CreateProjectData) => {
@@ -106,6 +110,7 @@ export const useCreateProject = () => {
           context.previousProjects
         );
       }
+      showError("Failed to create project. Please try again.");
     },
     onSettled: (_data, _error, variables) => {
       queryClient.invalidateQueries({ queryKey: ["projects", variables.userId] });
