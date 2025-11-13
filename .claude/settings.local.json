@@ -5,7 +5,8 @@
       "Bash(do mv \"$f\" \"$f%.jsx.tsx\")",
       "Bash(done)",
       "Bash(npx tsc:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
