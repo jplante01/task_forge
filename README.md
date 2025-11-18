@@ -168,6 +168,7 @@ This project includes automated deployment of the front-end application to AWS S
 
 ```bash
 # Run the script from the `deployment` folder
+# NOTE: This command will not have access to aws-cli inside the development container
 cd deployment
 ./deploy.sh
 ```
